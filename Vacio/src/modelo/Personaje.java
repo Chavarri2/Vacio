@@ -1,11 +1,96 @@
-/**
- * 
- */
 package modelo;
 
-/**
- * 
- */
-public class Personaje {
+import visual.Interactuar;
 
+/**
+ * Representa al personaje controlado por el jugador en el juego Vacío.
+ * Hereda de EntidadJuego para tener ID automático y nombre.
+ * Implementa la interfaz Interactuar para mostrar su estado.
+ *
+ * @author Carlos Abraham Chavarri Valera
+ * @author Violeta Pizco
+ * @version 1.0
+ * @since 2026-02-11
+ */
+public class Personaje extends EntidadJuego implements Interactuar{
+
+    private String genero;       // Hombre, Mujer, Desconocido
+    private int fuerza;
+    private int resistencia;
+    private int velocidad;
+
+    /**
+     * Constructor vacío (necesario para serialización y uso genérico)
+     */
+    public Personaje() {
+        super(); // Llama al constructor de EntidadJuego
+        this.genero = "Desconocido";
+        this.fuerza = 5;
+        this.resistencia = 5;
+        this.velocidad = 5;
+    }
+
+    /**
+     * Constructor completo con todos los atributos
+     *
+     * @param nombre      Nombre del personaje
+     * @param genero      Género (Hombre, Mujer, Desconocido)
+     * @param fuerza      Valor de fuerza
+     * @param resistencia Valor de resistencia
+     * @param velocidad   Valor de velocidad
+     */
+    public Personaje(String nombre, String genero, int fuerza, int resistencia, int velocidad) {
+        super(nombre); // Asigna nombre y genera ID automático
+        this.genero = genero;
+        this.fuerza = fuerza;
+        this.resistencia = resistencia;
+        this.velocidad = velocidad;
+    }
+
+    // Getters y Setters
+
+    public String getGenero() {
+        return genero;
+    }
+
+    public void setGenero(String genero) {
+        this.genero = genero;
+    }
+
+    public int getFuerza() {
+        return fuerza;
+    }
+
+    public void setFuerza(int fuerza) {
+        this.fuerza = fuerza;
+    }
+
+    public int getResistencia() {
+        return resistencia;
+    }
+
+    public void setResistencia(int resistencia) {
+        this.resistencia = resistencia;
+    }
+
+    public int getVelocidad() {
+        return velocidad;
+    }
+
+    public void setVelocidad(int velocidad) {
+        this.velocidad = velocidad;
+    }
+
+    /**
+     * Muestra la información del personaje por consola.
+     * Método requerido por la interfaz Interactuar.
+     */
+    @Override
+    public void mostrar() {
+        System.out.println("Personaje: " + getNombre());
+        System.out.println("Género: " + genero);
+        System.out.println("Atributos - Fuerza: " + fuerza + 
+                           ", Resistencia: " + resistencia + 
+                           ", Velocidad: " + velocidad);
+    }
 }
