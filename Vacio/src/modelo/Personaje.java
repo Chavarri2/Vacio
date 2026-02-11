@@ -15,6 +15,7 @@ import visual.Interactuar;
 public class Personaje extends EntidadJuego implements Interactuar{
 
     private String genero;       // Hombre, Mujer, Desconocido
+    private String caracteristica;
     private int fuerza;
     private int resistencia;
     private int velocidad;
@@ -28,6 +29,22 @@ public class Personaje extends EntidadJuego implements Interactuar{
         this.fuerza = 5;
         this.resistencia = 5;
         this.velocidad = 5;
+    }
+        /**
+     * Constructor completo con todos los atributos
+     *
+     * @param nombre      Nombre del personaje
+     * @param genero      Género (Hombre, Mujer, Desconocido)
+     * @param fuerza      Valor de fuerza
+     * @param resistencia Valor de resistencia
+     * @param velocidad   Valor de velocidad
+     */
+    public Personaje(String nombre, String genero, int fuerza, int resistencia, int velocidad) {
+        super(nombre); // Asigna nombre y genera ID automático
+        this.genero = genero;
+        this.fuerza = fuerza;
+        this.resistencia = resistencia;
+        this.velocidad = velocidad;
     }
 
     /**
@@ -93,4 +110,5 @@ public class Personaje extends EntidadJuego implements Interactuar{
                            ", Resistencia: " + resistencia + 
                            ", Velocidad: " + velocidad);
     }
+
 }
