@@ -24,7 +24,7 @@ public class LeerScanner {
      * @return El número entero introducido por el usuario
      */
     public static int leerEntero(String mensaje) {
-        System.out.print(mensaje);
+        System.out.println(mensaje);
         int numero = teclado.nextInt();
         teclado.nextLine(); // Limpiar el salto de línea pendiente
         return numero;
@@ -37,7 +37,7 @@ public class LeerScanner {
      * @return El número decimal introducido por el usuario
      */
     public static double leerDouble(String mensaje) {
-        System.out.print(mensaje);
+        System.out.println(mensaje);
         double numero = teclado.nextDouble();
         teclado.nextLine(); // Limpiar el salto de línea pendiente
         return numero;
@@ -51,7 +51,7 @@ public class LeerScanner {
      * @return La cadena introducida por el usuario
      */
     public static String leerString(String mensaje) {
-        System.out.print(mensaje);
+        System.out.println(mensaje);
         return teclado.nextLine().trim(); // trim() elimina espacios iniciales y finales
     }
     public static String limpiarScanner() {
@@ -69,3 +69,4 @@ public class LeerScanner {
     }
 
 }
+
