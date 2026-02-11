@@ -432,6 +432,7 @@ public class Vacio {
                 return LeerScanner.leerEntero(mensaje);
             } catch (InputMismatchException e) {
                 System.out.println("Error: Debes introducir un número entero válido.");
+                LeerScanner.limpiarScanner();
             }
         }
     }
@@ -446,7 +447,9 @@ public class Vacio {
                 System.out.printf("Opción no válida. Debe estar entre %d y %d.%n", min, max);
             } catch (Exception e) {
                 System.out.println("Error: Debes introducir un número entero válido.");
+                LeerScanner.limpiarScanner();
             }
         }
     }
+
 }
