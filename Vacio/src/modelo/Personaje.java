@@ -48,17 +48,18 @@ public class Personaje extends EntidadJuego implements Interactuar{
     }
 
     /**
-     * Constructor completo con todos los atributos
-     *
-     * @param nombre      Nombre del personaje
-     * @param genero      Género (Hombre, Mujer, Desconocido)
-     * @param fuerza      Valor de fuerza
-     * @param resistencia Valor de resistencia
-     * @param velocidad   Valor de velocidad
+     * Constructor completo con todos los atributos.
+     * @param nombre Nombre del personaje.
+     * @param genero Género.
+     * @param caracteristica Característica narrativa.
+     * @param fuerza Fuerza.
+     * @param resistencia Resistencia.
+     * @param velocidad Velocidad.
      */
-    public Personaje(String nombre, String genero, int fuerza, int resistencia, int velocidad) {
-        super(nombre); // Asigna nombre y genera ID automático
+    public Personaje(String nombre, String genero, String caracteristica, Integer fuerza, Integer resistencia, Integer velocidad) {
+        super(nombre);
         this.genero = genero;
+        this.caracteristica = caracteristica;
         this.fuerza = fuerza;
         this.resistencia = resistencia;
         this.velocidad = velocidad;
@@ -97,6 +98,14 @@ public class Personaje extends EntidadJuego implements Interactuar{
     public void setVelocidad(int velocidad) {
         this.velocidad = velocidad;
     }
+    
+    public String getCaracteristica() {
+        return caracteristica;
+    }
+
+    public void setCaracteristica(String caracteristica) {
+        this.caracteristica = caracteristica;
+    }
 
     /**
      * Muestra la información del personaje por consola.
@@ -104,11 +113,9 @@ public class Personaje extends EntidadJuego implements Interactuar{
      */
     @Override
     public void mostrar() {
-        System.out.println("Personaje: " + getNombre());
-        System.out.println("Género: " + genero);
-        System.out.println("Atributos - Fuerza: " + fuerza + 
-                           ", Resistencia: " + resistencia + 
-                           ", Velocidad: " + velocidad);
+        System.out.println("Personaje: " + nombre + ", Género: " + genero + ", Característica: " + caracteristica);
+        System.out.println("Atributos - Fuerza: " + fuerza + ", Resistencia: " + resistencia + ", Velocidad: " + velocidad);
     }
 
 }
+
