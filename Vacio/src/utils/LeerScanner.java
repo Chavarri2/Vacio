@@ -54,6 +54,9 @@ public class LeerScanner {
         System.out.print(mensaje);
         return teclado.nextLine().trim(); // trim() elimina espacios iniciales y finales
     }
+    public static String limpiarScanner() {
+        return teclado.nextLine();
+    }
 
     /**
      * Método para cerrar el Scanner cuando ya no se necesite (buena práctica,
@@ -64,4 +67,5 @@ public class LeerScanner {
     public static void cerrar() {
         teclado.close();
     }
+
 }
