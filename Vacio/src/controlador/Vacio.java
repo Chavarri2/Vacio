@@ -224,6 +224,7 @@ public class Vacio {
 
         // Creamos personaje sin característica
         Personaje heroe = new Personaje(nombrePersonaje, genero, fuerza, resistencia, velocidad);
+        heroe.setCaracteristica("Neutral");
 
         partidaActual = new Partida(usuarioActual, heroe);
         juegoEnCurso = true;
@@ -453,3 +454,4 @@ public class Vacio {
     }
 
 }
+
