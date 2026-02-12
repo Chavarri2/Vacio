@@ -12,10 +12,10 @@ package modelo;
 public class Puntuacion {
     /** Usuario asociado. */
     private Usuario usuario;
-    
+
     /** Puntos obtenidos. */
     private Short puntos;
-    
+
     /** Comentario opcional. */
     private String comentario;
 
@@ -27,8 +27,9 @@ public class Puntuacion {
 
     /**
      * Constructor con usuario y puntos.
+     * 
      * @param usuario Usuario.
-     * @param puntos Puntos.
+     * @param puntos  Puntos.
      */
     public Puntuacion(Usuario usuario, Short puntos) {
         this.usuario = usuario;
@@ -37,8 +38,9 @@ public class Puntuacion {
 
     /**
      * Constructor completo.
-     * @param usuario Usuario.
-     * @param puntos Puntos.
+     * 
+     * @param usuario    Usuario.
+     * @param puntos     Puntos.
      * @param comentario Comentario.
      */
     public Puntuacion(Usuario usuario, Short puntos, String comentario) {

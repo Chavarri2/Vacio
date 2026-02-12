@@ -15,7 +15,7 @@ import visual.Interactuar;
 public class Menu implements Interactuar {
     /** Texto del menú. */
     private String texto;
-    
+
     /** Clave siguiente. */
     private String claveSiguiente;
 
@@ -27,7 +27,8 @@ public class Menu implements Interactuar {
 
     /**
      * Constructor con texto y clave.
-     * @param texto Texto.
+     * 
+     * @param texto          Texto.
      * @param claveSiguiente Clave.
      */
     public Menu(String texto, String claveSiguiente) {

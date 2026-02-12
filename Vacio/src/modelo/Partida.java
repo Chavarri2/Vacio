@@ -5,7 +5,8 @@ import java.util.List;
 
 /**
  * Clase que representa una partida completa en el juego Vacío.
- * Hereda de EntidadJuego y almacena toda la información relevante de una sesión de juego.
+ * Hereda de EntidadJuego y almacena toda la información relevante de una sesión
+ * de juego.
  *
  * @author Carlos Abraham Chavarri Valera
  * @author Violeta Pisco
@@ -78,7 +79,7 @@ public class Partida extends EntidadJuego {
         }
     }
 
-    //Incrementa en 1 el contador de turnos de la partida.
+    // Incrementa en 1 el contador de turnos de la partida.
     public void incrementarTurno() {
         turnos++;
     }

@@ -16,12 +16,12 @@ import java.util.List;
 public class Usuario extends EntidadJuego {
     /** Nickname del usuario. */
     private String nickname;
-    
+
     /** Edad del usuario. */
     private short edad;
-    
+
     /** Lista de partidas asociadas (LinkedList). */
-    
+
     private List<Partida> partidas = new LinkedList<>();
 
     /**
@@ -34,7 +34,8 @@ public class Usuario extends EntidadJuego {
 
     /**
      * Constructor con nombre y nickname.
-     * @param nombre Nombre real.
+     * 
+     * @param nombre   Nombre real.
      * @param nickname Nickname.
      */
     public Usuario(String nombre, String nickname) {
@@ -45,9 +46,10 @@ public class Usuario extends EntidadJuego {
 
     /**
      * Constructor completo.
-     * @param nombre Nombre real.
+     * 
+     * @param nombre   Nombre real.
      * @param nickname Nickname.
-     * @param edad Edad.
+     * @param edad     Edad.
      */
     public Usuario(String nombre, String nickname, short edad) {
         super(nombre);

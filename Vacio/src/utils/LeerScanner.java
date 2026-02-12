@@ -3,8 +3,10 @@ package utils;
 import java.util.Scanner;
 
 /**
- * Clase auxiliar que centraliza la lectura de datos desde la consola mediante Scanner.
- * Facilita la entrada de datos al usuario mostrando un mensaje previo y gestionando
+ * Clase auxiliar que centraliza la lectura de datos desde la consola mediante
+ * Scanner.
+ * Facilita la entrada de datos al usuario mostrando un mensaje previo y
+ * gestionando
  * correctamente la limpieza del buffer cuando es necesario.
  *
  * @author Carlos Abraham Chavarri Valera
@@ -54,6 +56,7 @@ public class LeerScanner {
         System.out.println(mensaje);
         return teclado.nextLine().trim(); // trim() elimina espacios iniciales y finales
     }
+
     public static String limpiarScanner() {
         return teclado.nextLine();
     }
@@ -69,4 +72,3 @@ public class LeerScanner {
     }
 
 }
-

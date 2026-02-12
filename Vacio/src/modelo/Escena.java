@@ -16,7 +16,7 @@ import java.util.List;
 public class Escena extends EntidadJuego {
     /** Descripción. */
     private String descripcion;
-    
+
     /** Lista de menús (Vector). */
     private List<Menu> menus = new Vector<>();
 
@@ -30,7 +30,8 @@ public class Escena extends EntidadJuego {
 
     /**
      * Constructor con nombre y descripción.
-     * @param nombre Nombre.
+     * 
+     * @param nombre      Nombre.
      * @param descripcion Descripción.
      */
     public Escena(String nombre, String descripcion) {
@@ -41,6 +42,7 @@ public class Escena extends EntidadJuego {
 
     /**
      * Constructor con nombre.
+     * 
      * @param nombre Nombre.
      */
     public Escena(String nombre) {

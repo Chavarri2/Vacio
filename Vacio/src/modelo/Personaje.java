@@ -12,9 +12,9 @@ import visual.Interactuar;
  * @version 1.0
  * @since 2026-02-11
  */
-public class Personaje extends EntidadJuego implements Interactuar{
+public class Personaje extends EntidadJuego implements Interactuar {
 
-    private String genero;       // Hombre, Mujer, Desconocido
+    private String genero; // Hombre, Mujer, Desconocido
     private String caracteristica;
     private short fuerza;
     private short resistencia;
@@ -30,7 +30,8 @@ public class Personaje extends EntidadJuego implements Interactuar{
         this.resistencia = 5;
         this.velocidad = 5;
     }
-        /**
+
+    /**
      * Constructor completo con todos los atributos
      *
      * @param nombre      Nombre del personaje
@@ -49,14 +50,16 @@ public class Personaje extends EntidadJuego implements Interactuar{
 
     /**
      * Constructor completo con todos los atributos.
-     * @param nombre Nombre del personaje.
-     * @param genero Género.
+     * 
+     * @param nombre         Nombre del personaje.
+     * @param genero         Género.
      * @param caracteristica Característica narrativa.
-     * @param fuerza Fuerza.
-     * @param resistencia Resistencia.
-     * @param velocidad Velocidad.
+     * @param fuerza         Fuerza.
+     * @param resistencia    Resistencia.
+     * @param velocidad      Velocidad.
      */
-    public Personaje(String nombre, String genero, String caracteristica, short fuerza, short resistencia, short velocidad) {
+    public Personaje(String nombre, String genero, String caracteristica, short fuerza, short resistencia,
+            short velocidad) {
         super(nombre);
         this.genero = genero;
         this.caracteristica = caracteristica;
@@ -98,7 +101,7 @@ public class Personaje extends EntidadJuego implements Interactuar{
     public void setVelocidad(short velocidad) {
         this.velocidad = velocidad;
     }
-    
+
     public String getCaracteristica() {
         return caracteristica;
     }
@@ -114,8 +117,8 @@ public class Personaje extends EntidadJuego implements Interactuar{
     @Override
     public void mostrar() {
         System.out.println("Personaje: " + nombre + ", Género: " + genero + ", Característica: " + caracteristica);
-        System.out.println("Atributos - Fuerza: " + fuerza + ", Resistencia: " + resistencia + ", Velocidad: " + velocidad);
+        System.out.println(
+                "Atributos - Fuerza: " + fuerza + ", Resistencia: " + resistencia + ", Velocidad: " + velocidad);
     }
 
 }
-

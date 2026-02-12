@@ -7,9 +7,11 @@ import java.net.URL;
 
 /**
  * Clase encargada de gestionar la reproducción de música dentro del proyecto.
- * Utiliza la API estándar de Java para reproducir archivos de audio en formato WAV.
+ * Utiliza la API estándar de Java para reproducir archivos de audio en formato
+ * WAV.
  *
- * El archivo de audio utilizado debe encontrarse en la ruta de recursos del proyecto.
+ * El archivo de audio utilizado debe encontrarse en la ruta de recursos del
+ * proyecto.
  * En este caso, se espera un archivo llamado "in_the_sea.wav".
  *
  * @author Carlos Abraham Chavarri Valera
@@ -40,7 +42,7 @@ public class Musica {
                 clip = AudioSystem.getClip();
                 clip.open(audioInputStream);
             }
-            clip.setFramePosition(0); // Reinicia al inicio 
+            clip.setFramePosition(0); // Reinicia al inicio
             clip.loop(Clip.LOOP_CONTINUOUSLY); // Bucle infinito
             clip.start();
             System.out.println("Reproduciendo música...");

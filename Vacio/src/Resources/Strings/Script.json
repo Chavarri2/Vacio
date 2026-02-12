@@ -26,9 +26,11 @@
                 "ATAQUESUERTE0": "Pierdes el equilibrio por el ímpetu y la velocidad de tu empujón que te hacen caer al agua"
             }
         ],
-        "CAP2": [{
-            "EMBARCAR": "El barco comienza a moverse, atravesando la nada"
-        }],
+        "CAP2": [
+            {
+                "EMBARCAR": "El barco comienza a moverse, atravesando la nada"
+            }
+        ],
         "FINALES": {
             "RIOESTIGIO": "Todo a tu alrededor es agua, un mar infinito. Sin quererlo te has olvidado de tu nombre, tu vida, del barquero y cada parte de tu historia. Te has convertido en un alma más atrapada en el río estigio, condenada a olvidar"
         },
@@ -47,11 +49,12 @@
             ]
         }
     },
-    "MENUS":{ 
-        "INICIO": ["=====================================",
-        "          V A C I O   -   RPG        ",
-        "  Un viaje entre la vida y la muerte  ",
-        "====================================="
+    "MENUS": {
+        "INICIO": [
+            "=====================================",
+            "          V A C I O   -   RPG        ",
+            "  Un viaje entre la vida y la muerte  ",
+            "====================================="
         ]
     }
 }

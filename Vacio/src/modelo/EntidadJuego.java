@@ -12,11 +12,11 @@ package modelo;
 
 public abstract class EntidadJuego {
     /** Contador estático para generar IDs únicos. */
-    private static shorteger contadorIds = 0;
-    
+    private static Integer contadorIds = 0;
+
     /** ID único de la entidad. */
-    protected shorteger id;
-    
+    protected Integer id;
+
     /** Nombre de la entidad. */
     protected String nombre;
 
@@ -29,6 +29,7 @@ public abstract class EntidadJuego {
 
     /**
      * Constructor que asigna un ID único y un nombre.
+     * 
      * @param nombre El nombre de la entidad.
      */
     public EntidadJuego(String nombre) {
@@ -37,7 +38,7 @@ public abstract class EntidadJuego {
     }
 
     // Getters y Setters
-    public shorteger getId() {
+    public Integer getId() {
         return id;
     }
 
