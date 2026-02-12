@@ -188,8 +188,8 @@ public class Vacio {
         String genero = null;
         while (true) {
             genero = LeerScanner.leerString("Género (Hombre / Mujer / Desconocido): ").trim();
-            String g = genero.toLowerCase();
-            if (g.equals("hombre") || g.equals("mujer") || g.equals("desconocido")) {
+            genero = genero.toLowerCase();
+            if (genero.equals("hombre") || genero.equals("mujer") || genero.equals("desconocido")) {
                 break;
             }
             System.out.println("Género no válido. Solo se permite: Hombre, Mujer o Desconocido.");
