@@ -277,7 +277,7 @@ public class Juego {
         }
     }
 
-    public void seleccionarOcrearUsuario() throws Excepciones {
+    public Usuario seleccionarOcrearUsuario() throws Excepciones {
         System.out.println("\n=== Usuarios disponibles ===");
         if (usuarios.isEmpty()) {
             System.out.println("No hay usuarios creados aún.");
@@ -299,5 +299,6 @@ public class Juego {
             usuarioActual = usuarios.get(opcion - 1);
             System.out.println("\nUsuario seleccionado: " + usuarioActual.getNickname());
         }
+        return usuarioActual;
     }
 }

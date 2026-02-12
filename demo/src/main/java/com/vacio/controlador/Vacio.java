@@ -29,7 +29,7 @@ public class Vacio {
             // Solo pedimos usuario la primera vez
             if (juego.getusuarioactual() == null) {
 
-                juego.seleccionarOcrearUsuario();
+                mostrar.setusuarioActual(juego.seleccionarOcrearUsuario());
             }
 
             while (true) {

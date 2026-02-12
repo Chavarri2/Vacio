@@ -14,10 +14,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class Usuario extends EntidadJuego {
-    /** Nickname del usuario. */
     private String nickname;
-
-    /** Edad del usuario. */
     private short edad;
 
     /** Lista de partidas asociadas (LinkedList). */

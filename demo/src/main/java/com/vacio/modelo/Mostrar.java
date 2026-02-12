@@ -12,7 +12,10 @@ public class Mostrar {
         this.usuarioActual = usuarioActual;
         texto= Utilidades.leerArchivo();
     }
-    
+    public void setUsuarioActual(Usuario usuarioActual)
+    {
+        this.usuarioActual = usuarioActual;
+    }
 
     public void mostrarPuntuaciones() {
         List<Partida> partidas = usuarioActual.getPartidas();
