@@ -1,7 +1,6 @@
 package com.vacio.modelo;
 
 import java.util.List;
-import com.fasterxml.jackson.databind.JsonNode;
 import com.vacio.utils.Utilidades;
 
 public class Mostrar{
