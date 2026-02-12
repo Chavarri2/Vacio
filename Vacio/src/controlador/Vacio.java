@@ -38,6 +38,7 @@ public class Vacio {
     private static Random random = new Random();
 
     public static void main(String[] args) {
+        Musica.reproducir();
         System.out.println("=====================================");
         System.out.println("          V A C I O   -   RPG        ");
         System.out.println("  Un viaje entre la vida y la muerte  ");
@@ -454,4 +455,5 @@ public class Vacio {
     }
 
 }
+
 
