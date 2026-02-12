@@ -3,42 +3,34 @@ package com.vacio.modelo;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
-
 import com.fasterxml.jackson.databind.JsonNode;
 import com.vacio.excepcion.Excepciones;
 import com.vacio.utils.LeerScanner;
 import com.vacio.utils.Utilidades;
 import com.vacio.utils.Validaciones;
-
 import java.util.ArrayList;
 import java.util.List;
 import com.vacio.modelo.Juego;
 
 public class Juego {
-    private static Usuario usuarioActual = null;
     private static Map<String, Escena> escenas = new HashMap<>();
     private static Partida partidaActual;
     private static boolean juegoEnCurso = false;
     private static List<Usuario> usuarios = new ArrayList<>();
-
     private static Random random = new Random();
-    private JsonNode texto = null;
-
-    public Juego() {
-        texto = Utilidades.leerArchivo();
-    }
-
-    public Usuario getusuarioactual() {
-        return usuarioActual;
+    private final InstanciaJuego instancia;
+    public Juego(InstanciaJuego instancia) {
+        this.instancia=instancia;
+        instancia.setTexto(Utilidades.leerArchivo());
     }
 
     public void inicializarEscenas() {
         // ESCENA escena_empezar
-        JsonNode escenaInicio = texto.path("EVENTOS").path("CAP1").path("ESCENAINICIAL");
+        JsonNode escenaInicio = instancia.getTexto().path("EVENTOS").path("CAP1").path("ESCENAINICIAL");
         Escena inicio = new Escena(escenaInicio.path("NOMBRE").asText(), escenaInicio.path("TEXTO").asText());
 
         // RESPUESTAS escena_empezar
-        JsonNode opcionesEscenaInicio = texto.path("EVENTOS").path("OPCIONES").path("OPCIONESCOMIENZO");
+        JsonNode opcionesEscenaInicio = instancia.getTexto().path("EVENTOS").path("OPCIONES").path("OPCIONESCOMIENZO");
         for (JsonNode Item : opcionesEscenaInicio) {
             inicio.getMenus().add(new Respuestas(Item.path("OPCION").asText(), Item.path("CLAVE").asText()));
         }
@@ -74,8 +66,8 @@ public class Juego {
             edad = Validaciones.leerEnteroSeguro("Introduce tu edad (13-120 años): ");
         }
 
-        usuarioActual = new Usuario(nombre, nickname, edad);
-        usuarios.add(usuarioActual);
+        instancia.setUsuarioActual(new Usuario(nombre, nickname, edad));
+        usuarios.add(instancia.getUsuarioActual());
         System.out.println("\n¡Bienvenid@, " + nickname + "!");
     }
 
@@ -146,13 +138,13 @@ public class Juego {
 
         Personaje heroe= AsignarPuntos(genero, nombrePersonaje);
 
-        partidaActual = new Partida(usuarioActual, heroe);
+        partidaActual = new Partida(instancia.getUsuarioActual(), heroe);
         juegoEnCurso = true;
 
         System.out.println("\nPartida iniciada. Prepárate para entrar al Limbo...\n");
         heroe.mostrar();
 
-        jugarPartida(texto.path("EVENTOS").path("CAP1").path("ESCENAINICIAL").path("ID").asText());
+        jugarPartida(instancia.getTexto().path("EVENTOS").path("CAP1").path("ESCENAINICIAL").path("ID").asText());
     }
 
     public void jugarPartida(String claveEscenaActual) {
@@ -161,7 +153,7 @@ public class Juego {
                 Escena escenaActual = escenas.get(claveEscenaActual);
                 if (escenaActual == null) {
                     System.out.println("Escena no encontrada. Volviendo al inicial.");
-                    claveEscenaActual = texto.path("EVENTOS").path("CAP1").path("ESCENAINICIAL").path("ID").asText();
+                    claveEscenaActual = instancia.getTexto().path("EVENTOS").path("CAP1").path("ESCENAINICIAL").path("ID").asText();
                     continue;
                 }
                 Utilidades.typeWriter("\n" + escenaActual.getDescripcion(), 40);
@@ -218,7 +210,7 @@ public class Juego {
             System.out.println("Resultado: " + partidaActual.getResultado());
             System.out.println("Acciones realizadas: " + partidaActual.getAcciones().size());
 
-            usuarioActual.getPartidas().add(partidaActual);
+            instancia.getUsuarioActual().getPartidas().add(partidaActual);
 
         } catch (Exception e) {
             System.out.println("Error inesperado durante la partida: " + e.getMessage());
@@ -277,7 +269,7 @@ public class Juego {
         }
     }
 
-    public Usuario seleccionarOcrearUsuario() throws Excepciones {
+    public void seleccionarOcrearUsuario() throws Excepciones {
         System.out.println("\n=== Usuarios disponibles ===");
         if (usuarios.isEmpty()) {
             System.out.println("No hay usuarios creados aún.");
@@ -296,9 +288,8 @@ public class Juego {
         if (opcion == usuarios.size() + 1) {
             crearNuevoUsuario();
         } else {
-            usuarioActual = usuarios.get(opcion - 1);
-            System.out.println("\nUsuario seleccionado: " + usuarioActual.getNickname());
+            instancia.setUsuarioActual(usuarios.get(opcion - 1));
+            System.out.println("\nUsuario seleccionado: " + instancia.getUsuarioActual().getNickname());
         }
-        return usuarioActual;
     }
 }

@@ -1,5 +1,5 @@
 package com.vacio.controlador;
-
+import com.vacio.modelo.InstanciaJuego;
 import com.vacio.modelo.Juego;
 import com.vacio.modelo.Mostrar;
 import com.vacio.modelo.Musica;
@@ -17,19 +17,19 @@ import com.vacio.utils.Validaciones;
  */
 public class Vacio {
     public static void main(String[] args) {
-        //Musica.reproducir();
-        
-        Juego juego = new Juego();
-        Mostrar mostrar = new Mostrar(null);
+        Musica.reproducir();
+        InstanciaJuego instancia= new InstanciaJuego();
+
+        Juego juego = new Juego(instancia);
+        Mostrar mostrar = new Mostrar(instancia);
         try {
             // IMPRIMIR MENU1
             mostrar.mostrarTituloPrincipal();
             juego.inicializarEscenas();
 
             // Solo pedimos usuario la primera vez
-            if (juego.getusuarioactual() == null) {
-
-                mostrar.setusuarioActual(juego.seleccionarOcrearUsuario());
+            if (instancia.getUsuarioActual() == null) {
+                juego.seleccionarOcrearUsuario();
             }
 
             while (true) {

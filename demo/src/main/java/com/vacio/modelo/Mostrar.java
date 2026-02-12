@@ -4,21 +4,15 @@ import java.util.List;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.vacio.utils.Utilidades;
 
-public class Mostrar {
-    private Usuario usuarioActual = null;
-    private JsonNode texto= null;
+public class Mostrar{
 
-    public Mostrar(Usuario usuarioActual) {
-        this.usuarioActual = usuarioActual;
-        texto= Utilidades.leerArchivo();
-    }
-    public void setUsuarioActual(Usuario usuarioActual)
-    {
-        this.usuarioActual = usuarioActual;
+private final InstanciaJuego instancia;
+    public Mostrar(InstanciaJuego instancia) {
+        this.instancia=instancia;
     }
 
     public void mostrarPuntuaciones() {
-        List<Partida> partidas = usuarioActual.getPartidas();
+        List<Partida> partidas = instancia.getUsuarioActual().getPartidas();
         if (partidas.isEmpty()) {
             System.out.println("\nNo hay puntuaciones registradas.");
             return;
@@ -45,7 +39,7 @@ public class Mostrar {
     }
 
     public void mostrarPartidasAnteriores() {
-        List<Partida> partidas = usuarioActual.getPartidas();
+        List<Partida> partidas = instancia.getUsuarioActual().getPartidas();
         if (partidas.isEmpty()) {
             System.out.println("\nNo hay partidas anteriores.");
             return;
@@ -60,13 +54,13 @@ public class Mostrar {
     }
 
     public void mostrarMenuPrincipal() {
-        List<String> menu = Utilidades.jsonToList( texto.path("MENUS").path("MENU"));
+        List<String> menu = Utilidades.jsonToList( instancia.getTexto().path("MENUS").path("MENU"));
         for(String texto: menu){
             System.out.println(texto);
         }
     }
     public void mostrarTituloPrincipal() {
-        List<String> menu = Utilidades.jsonToList( texto.path("MENUS").path("INICIO"));
+        List<String> menu = Utilidades.jsonToList( instancia.getTexto().path("MENUS").path("INICIO"));
         for(String texto: menu){
             System.out.println(texto);
         }
