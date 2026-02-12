@@ -17,7 +17,7 @@ import com.vacio.utils.Validaciones;
  */
 public class Vacio {
     public static void main(String[] args) {
-        Musica.reproducir();
+        //Musica.reproducir();
         // IMPRIMIR MENU1
         Juego juego = new Juego();
         Mostrar mostrar = new Mostrar(null);

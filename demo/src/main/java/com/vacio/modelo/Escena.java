@@ -1,4 +1,3 @@
-// Escena.java
 /**
  * Clase que representa una escena en el juego.
  * Hereda de EntidadJuego.
@@ -14,37 +13,23 @@ import java.util.Vector;
 import java.util.List;
 
 public class Escena extends EntidadJuego {
-    /** Descripción. */
+
     private String descripcion;
+    private List<Respuestas> menus = new Vector<>();
 
-    /** Lista de menús (Vector). */
-    private List<Menu> menus = new Vector<>();
+    //Constructores
 
-    /**
-     * Constructor por defecto.
-     */
     public Escena() {
         super();
         this.menus = new Vector<>();
     }
 
-    /**
-     * Constructor con nombre y descripción.
-     * 
-     * @param nombre      Nombre.
-     * @param descripcion Descripción.
-     */
     public Escena(String nombre, String descripcion) {
         super(nombre);
         this.descripcion = descripcion;
         this.menus = new Vector<>();
     }
 
-    /**
-     * Constructor con nombre.
-     * 
-     * @param nombre Nombre.
-     */
     public Escena(String nombre) {
         super(nombre);
         this.menus = new Vector<>();
@@ -59,11 +44,11 @@ public class Escena extends EntidadJuego {
         this.descripcion = descripcion;
     }
 
-    public List<Menu> getMenus() {
+    public List<Respuestas> getMenus() {
         return menus;
     }
 
-    public void setMenus(List<Menu> menus) {
+    public void setMenus(List<Respuestas> menus) {
         this.menus = menus;
     }
 }

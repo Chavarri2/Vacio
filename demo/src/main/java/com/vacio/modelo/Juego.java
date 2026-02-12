@@ -35,12 +35,12 @@ public class Juego {
     public void inicializarEscenas() {
         // ESCENA escena_empezar
         JsonNode escenaInicio = texto.path("EVENTOS").path("CAP1").path("ESCENAINICIAL");
-        Escena inicio = new Escena( escenaInicio.path("NOMBRE").asText(), escenaInicio.path("TEXTO").asText());
+         Escena inicio = new Escena( escenaInicio.path("NOMBRE").asText(), escenaInicio.path("TEXTO").asText());
         
         //RESPUESTAS escena_empezar
         JsonNode opcionesEscenaInicio = texto.path("EVENTOS").path("OPCIONES").path("OPCIONESCOMIENZO");
         for (JsonNode Item : opcionesEscenaInicio) {
-            inicio.getMenus().add(new Menu(Item.path("OPCION").asText(), Item.path("CLAVE").asText()));
+            inicio.getMenus().add(new Respuestas(Item.path("OPCION").asText(), Item.path("CLAVE").asText()));
         }
         //GUARDAR escena_empezar
         escenas.put(escenaInicio.path("ID").asText(), inicio);
@@ -118,10 +118,13 @@ public class Juego {
             switch (stat) {
                 case 1:
                     fuerza += cantidad;
-                case 2:
+                break;
+                    case 2:
                     resistencia += cantidad;
+                break;
                 case 3:
                     velocidad += cantidad;
+                break;
             }
 
             puntosRestantes -= cantidad;
@@ -137,7 +140,7 @@ public class Juego {
         System.out.println("\nPartida iniciada. Prepárate para entrar al Limbo...\n");
         heroe.mostrar();
 
-        jugarPartida("limbo_inicial");
+        jugarPartida(texto.path("EVENTOS").path("CAP1").path("ESCENAINICIAL").path("ID").asText());
     }
 
     public void jugarPartida(String claveEscenaActual) {
@@ -146,14 +149,13 @@ public class Juego {
                 Escena escenaActual = escenas.get(claveEscenaActual);
                 if (escenaActual == null) {
                     System.out.println("Escena no encontrada. Volviendo al inicial.");
-                    claveEscenaActual = "limbo_inicial";
+                    claveEscenaActual = texto.path("EVENTOS").path("CAP1").path("ESCENAINICIAL").path("ID").asText();
                     continue;
                 }
-
-                System.out.println("\n" + escenaActual.getDescripcion());
+                Utilidades.typeWriter("\n" + escenaActual.getDescripcion(), 40);
                 System.out.println("Opciones:");
                 short index = 1;
-                for (Menu m : escenaActual.getMenus()) {
+                for (Respuestas m : escenaActual.getMenus()) {
                     System.out.println(index + ". " + m.getTexto());
                     index++;
                 }
@@ -161,9 +163,9 @@ public class Juego {
                 short eleccion = Validaciones.obtenerOpcionValida("Tu decisión: ", (short) 1,
                         (short) escenaActual.getMenus().size());
 
-                Menu menuElegido = escenaActual.getMenus().get(eleccion - 1);
+                Respuestas menuElegido = escenaActual.getMenus().get(eleccion - 1);
                 String accionElegida = menuElegido.getTexto();
-                String siguienteClave = menuElegido.getClaveSiguiente();
+                String siguienteClave = menuElegido.getClave();
 
                 partidaActual.registrarAcciones(accionElegida);
                 partidaActual.incrementarTurno();
@@ -214,7 +216,7 @@ public class Juego {
         }
     }
 
-    public void afectarAtributos(Menu menu, Personaje personaje) {
+    public void afectarAtributos(Respuestas menu, Personaje personaje) {
         String texto = menu.getTexto().toLowerCase();
         if (texto.contains("absorber") || texto.contains("tomar")) {
             Atributos.aumentarResistencia(personaje, (short) 2);

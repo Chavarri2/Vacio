@@ -30,4 +30,15 @@ public class Utilidades {
         return resultado;
 
     }
+    public static void typeWriter(String texto, long delayMs) {
+        for (char c : texto.toCharArray()) {
+            System.out.print(c);
+            try {
+                Thread.sleep(delayMs);
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+            }
+        }
+        System.out.println();
+    }
 }
