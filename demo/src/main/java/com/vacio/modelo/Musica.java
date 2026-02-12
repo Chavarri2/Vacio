@@ -31,7 +31,7 @@ public class Musica {
     public static void reproducir() {
         try {
             if (clip == null) {
-                URL recurso = Musica.class.getResource("/modelo/in_the_sea.wav");
+                URL recurso = Musica.class.getResource("/Audio/in_the_sea.wav");
 
                 if (recurso == null) {
                     System.out.println("ERROR: No se encontró el archivo de música.");
@@ -45,7 +45,6 @@ public class Musica {
             clip.setFramePosition(0); // Reinicia al inicio
             clip.loop(Clip.LOOP_CONTINUOUSLY); // Bucle infinito
             clip.start();
-            System.out.println("Reproduciendo música...");
         } catch (Exception e) {
             System.out.println("Error al reproducir música: " + e.getMessage());
         }

@@ -1,13 +1,18 @@
 package com.vacio.modelo;
 
 import java.util.List;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.vacio.utils.Utilidades;
 
 public class Mostrar {
     private Usuario usuarioActual = null;
+    private JsonNode texto= null;
 
     public Mostrar(Usuario usuarioActual) {
         this.usuarioActual = usuarioActual;
+        texto= Utilidades.leerArchivo();
     }
+    
 
     public void mostrarPuntuaciones() {
         List<Partida> partidas = usuarioActual.getPartidas();
@@ -52,11 +57,15 @@ public class Mostrar {
     }
 
     public void mostrarMenuPrincipal() {
-        System.out.println("\n=== MENÚ PRINCIPAL ===");
-        System.out.println("1. Nueva partida");
-        System.out.println("2. Ver partidas anteriores");
-        System.out.println("3. Ver puntuaciones");
-        System.out.println("4. Salir");
-        System.out.println("======================");
+        List<String> menu = Utilidades.jsonToList( texto.path("MENUS").path("MENU"));
+        for(String texto: menu){
+            System.out.println(texto);
+        }
+    }
+    public void mostrarTituloPrincipal() {
+        List<String> menu = Utilidades.jsonToList( texto.path("MENUS").path("INICIO"));
+        for(String texto: menu){
+            System.out.println(texto);
+        }
     }
 }

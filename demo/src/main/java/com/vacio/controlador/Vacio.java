@@ -22,6 +22,7 @@ public class Vacio {
         Juego juego = new Juego();
         Mostrar mostrar = new Mostrar(null);
         try {
+            mostrar.mostrarTituloPrincipal();
             juego.inicializarEscenas();
 
             // Solo pedimos usuario la primera vez

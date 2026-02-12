@@ -11,11 +11,17 @@ import java.nio.file.Path;
 
 public class LeerFile {
 
-    public JsonNode GetJsonNode(String path) throws IOException{
-        ObjectMapper mapper = new ObjectMapper();
-        String json = Files.readString(Path.of(path));
-        JsonNode root = mapper.readTree(json);
+    public JsonNode GetJsonNode(String path) {
+        JsonNode root= null;
+        try{
+            ObjectMapper mapper = new ObjectMapper();
+            String json = Files.readString(Path.of(path));
+            root = mapper.readTree(json);
+        } catch(IOException e){
+            System.out.println("Muy feo");
+        }
         return root;
+        
     }
 
 }
