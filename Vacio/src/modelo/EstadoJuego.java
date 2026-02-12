@@ -3,7 +3,7 @@
  * Enumeración para los estados del juego.
  *
  * @author Carlos Abraham Chavarri Valera
- * @author Violeta Pizco
+ * @author Violeta Pisco
  * @version 1.0
  * @since 2026-02-11
  */

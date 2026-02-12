@@ -4,7 +4,7 @@
  * Hereda de EntidadJuego.
  *
  * @author Carlos Abraham Chavarri Valera
- * @author Violeta Pizco
+ * @author Violeta Pisco
  * @version 1.0
  * @since 2026-02-11
  */
@@ -18,7 +18,7 @@ public class Usuario extends EntidadJuego {
     private String nickname;
     
     /** Edad del usuario. */
-    private Integer edad;
+    private short edad;
     
     /** Lista de partidas asociadas (LinkedList). */
     
@@ -49,7 +49,7 @@ public class Usuario extends EntidadJuego {
      * @param nickname Nickname.
      * @param edad Edad.
      */
-    public Usuario(String nombre, String nickname, Integer edad) {
+    public Usuario(String nombre, String nickname, short edad) {
         super(nombre);
         this.nickname = nickname;
         this.edad = edad;
@@ -65,11 +65,11 @@ public class Usuario extends EntidadJuego {
         this.nickname = nickname;
     }
 
-    public Integer getEdad() {
+    public short getEdad() {
         return edad;
     }
 
-    public void setEdad(Integer edad) {
+    public void setEdad(short edad) {
         this.edad = edad;
     }
 

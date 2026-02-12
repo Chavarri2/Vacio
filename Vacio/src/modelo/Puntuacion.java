@@ -3,7 +3,7 @@
  * Clase que representa la puntuación de un usuario.
  *
  * @author Carlos Abraham Chavarri Valera
- * @author Violeta Pizco
+ * @author Violeta Pisco
  * @version 1.0
  * @since 2026-02-11
  */
@@ -14,7 +14,7 @@ public class Puntuacion {
     private Usuario usuario;
     
     /** Puntos obtenidos. */
-    private Integer puntos;
+    private Short puntos;
     
     /** Comentario opcional. */
     private String comentario;
@@ -30,7 +30,7 @@ public class Puntuacion {
      * @param usuario Usuario.
      * @param puntos Puntos.
      */
-    public Puntuacion(Usuario usuario, Integer puntos) {
+    public Puntuacion(Usuario usuario, Short puntos) {
         this.usuario = usuario;
         this.puntos = puntos;
     }
@@ -41,7 +41,7 @@ public class Puntuacion {
      * @param puntos Puntos.
      * @param comentario Comentario.
      */
-    public Puntuacion(Usuario usuario, Integer puntos, String comentario) {
+    public Puntuacion(Usuario usuario, Short puntos, String comentario) {
         this.usuario = usuario;
         this.puntos = puntos;
         this.comentario = comentario;
@@ -56,11 +56,11 @@ public class Puntuacion {
         this.usuario = usuario;
     }
 
-    public Integer getPuntos() {
+    public Short getPuntos() {
         return puntos;
     }
 
-    public void setPuntos(Integer puntos) {
+    public void setPuntos(Short puntos) {
         this.puntos = puntos;
     }
 

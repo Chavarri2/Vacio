@@ -1,15 +1,15 @@
-// Interactuar.java
+// shorteractuar.java
 /**
- * Interfaz para entidades que pueden interactuar, definiendo un método para mostrar información.
+ * shorterfaz para entidades que pueden shorteractuar, definiendo un método para mostrar información.
  *
  * @author Carlos Abraham Chavarri Valera
- * @author Violeta Pizco
+ * @author Violeta Pisco
  * @version 1.0
  * @since 2026-02-11
  */
 package visual;
 
-public interface Interactuar {
+public shorterface shorteractuar {
     /**
      * Muestra la información de la entidad.
      */

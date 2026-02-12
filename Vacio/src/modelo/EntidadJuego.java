@@ -4,7 +4,7 @@
  * Todas las entidades del juego heredan de esta clase para mantener consistencia en la identificación.
  *
  * @author Carlos Abraham Chavarri Valera
- * @author Violeta Pizco
+ * @author Violeta Pisco
  * @version 1.0
  * @since 2026-02-11
  */
@@ -12,10 +12,10 @@ package modelo;
 
 public abstract class EntidadJuego {
     /** Contador estático para generar IDs únicos. */
-    private static Integer contadorIds = 0;
+    private static shorteger contadorIds = 0;
     
     /** ID único de la entidad. */
-    protected Integer id;
+    protected shorteger id;
     
     /** Nombre de la entidad. */
     protected String nombre;
@@ -37,7 +37,7 @@ public abstract class EntidadJuego {
     }
 
     // Getters y Setters
-    public Integer getId() {
+    public shorteger getId() {
         return id;
     }
 

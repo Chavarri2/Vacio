@@ -8,7 +8,7 @@ import java.util.List;
  * Hereda de EntidadJuego y almacena toda la información relevante de una sesión de juego.
  *
  * @author Carlos Abraham Chavarri Valera
- * @author Violeta Pizco
+ * @author Violeta Pisco
  * @version 1.0
  * @since 2026-02-11
  */
@@ -78,9 +78,7 @@ public class Partida extends EntidadJuego {
         }
     }
 
-    /**
-     * Incrementa en 1 el contador de turnos de la partida.
-     */
+    //Incrementa en 1 el contador de turnos de la partida.
     public void incrementarTurno() {
         turnos++;
     }
@@ -94,9 +92,9 @@ public class Partida extends EntidadJuego {
      * @return Objeto Puntuacion con puntos calculados y comentario asociado
      */
     public Puntuacion getPuntuacion() {
-        int puntosBase = turnos * 10;
-        int bonoVictoria = (resultado == EstadoJuego.GANASTE) ? 300 : 0;
-        int puntosTotales = puntosBase + bonoVictoria;
+        short puntosBase = (short) (turnos * 10);
+        short bonoVictoria = (short) ((resultado == EstadoJuego.GANASTE) ? 300 : 0);
+        short puntosTotales = (short) (puntosBase + bonoVictoria);
 
         String comentario = (resultado == EstadoJuego.GANASTE)
                 ? "¡Victoria! Has escapado del limbo con éxito."

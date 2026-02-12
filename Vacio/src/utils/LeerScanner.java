@@ -8,7 +8,7 @@ import java.util.Scanner;
  * correctamente la limpieza del buffer cuando es necesario.
  *
  * @author Carlos Abraham Chavarri Valera
- * @author Violeta Pizco
+ * @author Violeta Pisco
  * @version 1.0
  * @since 2026-01-24
  */
@@ -18,14 +18,14 @@ public class LeerScanner {
     private static final Scanner teclado = new Scanner(System.in);
 
     /**
-     * Solicita y lee un número entero (int) desde la consola.
+     * Solicita y lee un número entero (short) desde la consola.
      *
      * @param mensaje El mensaje que se mostrará al usuario antes de leer el valor
      * @return El número entero introducido por el usuario
      */
-    public static int leerEntero(String mensaje) {
+    public static short leerEntero(String mensaje) {
         System.out.println(mensaje);
-        int numero = teclado.nextInt();
+        short numero = (short) teclado.nextInt();
         teclado.nextLine(); // Limpiar el salto de línea pendiente
         return numero;
     }

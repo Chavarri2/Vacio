@@ -6,7 +6,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 import java.util.InputMismatchException;
-import excepcion.NombreInvalidoExcepcion;
+
+import excepcion.Excepciones;
 import modelo.Atributos;
 import modelo.Escena;
 import modelo.EstadoJuego;
@@ -24,7 +25,7 @@ import utils.LeerScanner;
  * muestra menús, procesa decisiones del jugador y coordina las interacciones.
  *
  * @author Carlos Abraham Chavarri Valera
- * @author Violeta Pizco
+ * @author Violeta Pisco
  * @version 1.0
  * @since 2026-02-11
  */
@@ -39,10 +40,7 @@ public class Vacio {
 
     public static void main(String[] args) {
         Musica.reproducir();
-        System.out.println("=====================================");
-        System.out.println("          V A C I O   -   RPG        ");
-        System.out.println("  Un viaje entre la vida y la muerte  ");
-        System.out.println("=====================================\n");
+        //IMPRIMIR MENU1
 
         try {
             inicializarEscenas();
@@ -54,7 +52,7 @@ public class Vacio {
 
             while (true) {
                 mostrarMenuPrincipal();
-                int opcion = obtenerOpcionValida("Elige una opción: ", 1, 4);
+                short opcion = obtenerOpcionValida("Elige una opción: ", (short) 1, (short)4);
 
                 switch (opcion) {
                     case 1:
@@ -117,12 +115,12 @@ public class Vacio {
         escenas.put("escena_final_bueno", finalBueno);
     }
 
-    private static void seleccionarOcrearUsuario() throws NombreInvalidoExcepcion {
+    private static void seleccionarOcrearUsuario() throws Excepciones {
         System.out.println("\n=== Usuarios disponibles ===");
         if (usuarios.isEmpty()) {
             System.out.println("No hay usuarios creados aún.");
         } else {
-            for (int i = 0; i < usuarios.size(); i++) {
+            for (short i = 0; i < usuarios.size(); i++) {
                 Usuario u = usuarios.get(i);
                 System.out.printf("%d. %s (%s)%n", i + 1, u.getNickname(), u.getNombre());
             }
@@ -130,7 +128,7 @@ public class Vacio {
         System.out.println((usuarios.size() + 1) + ". Crear nuevo usuario");
         System.out.println("============================");
 
-        int opcion = obtenerOpcionValida("Selecciona un usuario: ", 1, usuarios.size() + 1);
+        short opcion = obtenerOpcionValida("Selecciona un usuario: ", (short) 1, (short) (usuarios.size() + 1));
 
         if (opcion == usuarios.size() + 1) {
             crearNuevoUsuario();
@@ -140,7 +138,7 @@ public class Vacio {
         }
     }
 
-    private static void crearNuevoUsuario() throws NombreInvalidoExcepcion {
+    private static void crearNuevoUsuario() throws Excepciones {
         System.out.println("\nBienvenid@ al Limbo...");
 
         String nombre = null;
@@ -161,7 +159,7 @@ public class Vacio {
             System.out.println("El nickname puede contener letras, números, guiones, puntos y espacios (3-20 caracteres). Intenta de nuevo.");
         }
 
-        int edad = 0;
+        short edad = 0;
         while (edad < 13 || edad > 120) {
             edad = leerEnteroSeguro("Introduce tu edad (13-120 años): ");
         }
@@ -197,10 +195,10 @@ public class Vacio {
 
         // Característica principal eliminada por completo
 
-        int fuerza = 5;
-        int resistencia = 5;
-        int velocidad = 5;
-        int puntosRestantes = 10;
+        short fuerza = 5;
+        short resistencia = 5;
+        short velocidad = 5;
+        short puntosRestantes = 10;
 
         System.out.println("\nAtributos base: Fuerza=5, Resistencia=5, Velocidad=5");
         System.out.println("Tienes 10 puntos para distribuir.");
@@ -210,14 +208,17 @@ public class Vacio {
             System.out.println("1. Aumentar Fuerza");
             System.out.println("2. Aumentar Resistencia");
             System.out.println("3. Aumentar Velocidad");
-            int stat = obtenerOpcionValida("Elige el atributo a mejorar: ", 1, 3);
+            short stat = obtenerOpcionValida("Elige el atributo a mejorar: ", (short)1, (short)3);
 
-            int cantidad = obtenerOpcionValida("¿Cuántos puntos gastar (1-" + puntosRestantes + ")? ", 1, puntosRestantes);
+            short cantidad = obtenerOpcionValida("¿Cuántos puntos gastar (1-" + puntosRestantes + ")? ", (short)1, puntosRestantes);
 
             switch (stat) {
-                case 1 -> fuerza += cantidad;
-                case 2 -> resistencia += cantidad;
-                case 3 -> velocidad += cantidad;
+                case 1:
+                     fuerza += cantidad;
+                case 2:
+                    resistencia += cantidad;
+                case 3:
+                    velocidad += cantidad;
             }
 
             puntosRestantes -= cantidad;
@@ -248,13 +249,13 @@ public class Vacio {
 
                 System.out.println("\n" + escenaActual.getDescripcion());
                 System.out.println("Opciones:");
-                int index = 1;
+                short index = 1;
                 for (Menu m : escenaActual.getMenus()) {
                     System.out.println(index + ". " + m.getTexto());
                     index++;
                 }
 
-                int eleccion = obtenerOpcionValida("Tu decisión: ", 1, escenaActual.getMenus().size());
+                short eleccion = obtenerOpcionValida("Tu decisión: ", (short) 1, (short)escenaActual.getMenus().size());
 
                 Menu menuElegido = escenaActual.getMenus().get(eleccion - 1);
                 String accionElegida = menuElegido.getTexto();
@@ -312,24 +313,24 @@ public class Vacio {
     private static void afectarAtributos(Menu menu, Personaje personaje) {
         String texto = menu.getTexto().toLowerCase();
         if (texto.contains("absorber") || texto.contains("tomar")) {
-            Atributos.aumentarResistencia(personaje, 2);
+            Atributos.aumentarResistencia(personaje, (short)2);
             System.out.println("¡Resistencia aumentada en 2!");
         } else if (texto.contains("explorar") || texto.contains("atacar")) {
-            Atributos.reducirFuerza(personaje, 1);
+            Atributos.reducirFuerza(personaje, (short)1);
             System.out.println("¡Fuerza reducida en 1 por el esfuerzo!");
         } else if (texto.contains("huir") || texto.contains("correr")) {
-            Atributos.aumentarAgilidad(personaje, 1);
+            Atributos.aumentarAgilidad(personaje, (short)1);
             System.out.println("¡Velocidad aumentada en 1 por la huida!");
         }
     }
 
     private static void eventoAleatorio(Personaje personaje) {
-        int chance = random.nextInt(100);
+        short chance = (short)random.nextInt(100);
         if (chance < 30) {
-            Atributos.aumentarFuerza(personaje, 3);
+            Atributos.aumentarFuerza(personaje, (short)3);
             System.out.println("¡Evento aleatorio positivo! Encuentras una fuente de poder. Fuerza +3.");
         } else if (chance < 60) {
-            Atributos.reducirResistencia(personaje, 2);
+            Atributos.reducirResistencia(personaje, (short)2);
             System.out.println("¡Evento aleatorio negativo! Una sombra te debilita. Resistencia -2.");
         } else {
             System.out.println("¡Evento aleatorio neutral! Nada sucede.");
@@ -337,9 +338,9 @@ public class Vacio {
     }
 
     private static boolean combatir(Personaje jugador) {
-        Personaje enemigo = new Personaje("Entidad Oscura", "Desconocido", "Hostil", 7, 6, 4);
-        int vidaJugador = jugador.getResistencia() * 5;
-        int vidaEnemigo = enemigo.getResistencia() * 5;
+        Personaje enemigo = new Personaje("Entidad Oscura", "Desconocido", "Hostil",(short) 7, (short)6, (short)4);
+        short vidaJugador = (short)(jugador.getResistencia() * 5);
+        short vidaEnemigo = (short)(enemigo.getResistencia() * 5);
 
         System.out.println("\n¡Combate iniciado contra " + enemigo.getNombre() + "!");
         enemigo.mostrar();
@@ -348,10 +349,10 @@ public class Vacio {
             System.out.println("\nTu turno: Vida=" + vidaJugador + " | Enemigo Vida=" + vidaEnemigo);
             System.out.println("1. Atacar");
             System.out.println("2. Defender");
-            int accion = obtenerOpcionValida("Elige acción: ", 1, 2);
+            short accion = obtenerOpcionValida("Elige acción: ", (short)1, (short)2);
 
             if (accion == 1) {
-                int damage = jugador.getFuerza() - (enemigo.getResistencia() / 2);
+                short damage = (short) (jugador.getFuerza() - (enemigo.getResistencia() / 2));
                 if (random.nextInt(100) < enemigo.getVelocidad() * 5) {
                     System.out.println("¡El enemigo esquiva!");
                 } else {
@@ -364,7 +365,7 @@ public class Vacio {
 
             if (vidaEnemigo <= 0) break;
 
-            int damageEnemigo = enemigo.getFuerza() - (jugador.getResistencia() / 2);
+            short damageEnemigo = (short) (enemigo.getFuerza() - (jugador.getResistencia() / 2));
             if (accion == 2) damageEnemigo /= 2;
             if (random.nextInt(100) < jugador.getVelocidad() * 5) {
                 System.out.println("¡Esquivas el ataque enemigo!");
@@ -391,7 +392,7 @@ public class Vacio {
         }
 
         System.out.println("\nPartidas anteriores (" + partidas.size() + " en total):");
-        for (int i = 0; i < partidas.size(); i++) {
+        for (short i = 0; i < partidas.size(); i++) {
             Partida p = partidas.get(i);
             System.out.printf("%d. ID: %d | Turnos: %d | Resultado: %s%n",
                     i + 1, p.getId(), p.getTurnos(), p.getResultado());
@@ -406,7 +407,7 @@ public class Vacio {
         }
 
         System.out.println("\nPuntuaciones (" + partidas.size() + " partidas jugadas):");
-        int maxPuntos = Integer.MIN_VALUE;
+        short maxPuntos = (short) Integer.MIN_VALUE;
         Partida partidaMax = null;
 
         for (Partida p : partidas) {
@@ -428,7 +429,7 @@ public class Vacio {
     /**
      * Lee un entero de forma segura con mensaje y reintento automático si falla.
      */
-    private static int leerEnteroSeguro(String mensaje) {
+    private static short leerEnteroSeguro(String mensaje) {
         while (true) {
             try {
                 return LeerScanner.leerEntero(mensaje);
@@ -439,14 +440,14 @@ public class Vacio {
         }
     }
 
-    private static int obtenerOpcionValida(String mensaje, int min, int max) {
+    private static short obtenerOpcionValida(String mensaje, short min, short max) {
         while (true) {
             try {
-                int opcion = leerEnteroSeguro(mensaje);
+                short opcion = leerEnteroSeguro(mensaje);
                 if (opcion >= min && opcion <= max) {
                     return opcion;
                 }
-                System.out.printf("Opción no válida. Debe estar entre %d y %d.%n", min, max);
+                System.out.printf("Opción no válida. Debe estar entre %d y %d.%n", i, j);
             } catch (Exception e) {
                 System.out.println("Error: Debes introducir un número entero válido.");
                 LeerScanner.limpiarScanner();

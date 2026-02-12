@@ -8,7 +8,7 @@ import visual.Interactuar;
  * Implementa la interfaz Interactuar para mostrar su estado.
  *
  * @author Carlos Abraham Chavarri Valera
- * @author Violeta Pizco
+ * @author Violeta Pisco
  * @version 1.0
  * @since 2026-02-11
  */
@@ -16,9 +16,9 @@ public class Personaje extends EntidadJuego implements Interactuar{
 
     private String genero;       // Hombre, Mujer, Desconocido
     private String caracteristica;
-    private int fuerza;
-    private int resistencia;
-    private int velocidad;
+    private short fuerza;
+    private short resistencia;
+    private short velocidad;
 
     /**
      * Constructor vacío (necesario para serialización y uso genérico)
@@ -39,7 +39,7 @@ public class Personaje extends EntidadJuego implements Interactuar{
      * @param resistencia Valor de resistencia
      * @param velocidad   Valor de velocidad
      */
-    public Personaje(String nombre, String genero, int fuerza, int resistencia, int velocidad) {
+    public Personaje(String nombre, String genero, short fuerza, short resistencia, short velocidad) {
         super(nombre); // Asigna nombre y genera ID automático
         this.genero = genero;
         this.fuerza = fuerza;
@@ -56,7 +56,7 @@ public class Personaje extends EntidadJuego implements Interactuar{
      * @param resistencia Resistencia.
      * @param velocidad Velocidad.
      */
-    public Personaje(String nombre, String genero, String caracteristica, Integer fuerza, Integer resistencia, Integer velocidad) {
+    public Personaje(String nombre, String genero, String caracteristica, short fuerza, short resistencia, short velocidad) {
         super(nombre);
         this.genero = genero;
         this.caracteristica = caracteristica;
@@ -75,27 +75,27 @@ public class Personaje extends EntidadJuego implements Interactuar{
         this.genero = genero;
     }
 
-    public int getFuerza() {
+    public short getFuerza() {
         return fuerza;
     }
 
-    public void setFuerza(int fuerza) {
+    public void setFuerza(short fuerza) {
         this.fuerza = fuerza;
     }
 
-    public int getResistencia() {
+    public short getResistencia() {
         return resistencia;
     }
 
-    public void setResistencia(int resistencia) {
+    public void setResistencia(short resistencia) {
         this.resistencia = resistencia;
     }
 
-    public int getVelocidad() {
+    public short getVelocidad() {
         return velocidad;
     }
 
-    public void setVelocidad(int velocidad) {
+    public void setVelocidad(short velocidad) {
         this.velocidad = velocidad;
     }
     
