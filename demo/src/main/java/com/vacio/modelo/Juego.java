@@ -35,14 +35,14 @@ public class Juego {
     public void inicializarEscenas() {
         // ESCENA escena_empezar
         JsonNode escenaInicio = texto.path("EVENTOS").path("CAP1").path("ESCENAINICIAL");
-         Escena inicio = new Escena( escenaInicio.path("NOMBRE").asText(), escenaInicio.path("TEXTO").asText());
-        
-        //RESPUESTAS escena_empezar
+        Escena inicio = new Escena(escenaInicio.path("NOMBRE").asText(), escenaInicio.path("TEXTO").asText());
+
+        // RESPUESTAS escena_empezar
         JsonNode opcionesEscenaInicio = texto.path("EVENTOS").path("OPCIONES").path("OPCIONESCOMIENZO");
         for (JsonNode Item : opcionesEscenaInicio) {
             inicio.getMenus().add(new Respuestas(Item.path("OPCION").asText(), Item.path("CLAVE").asText()));
         }
-        //GUARDAR escena_empezar
+        // GUARDAR escena_empezar
         escenas.put(escenaInicio.path("ID").asText(), inicio);
 
     }
@@ -79,6 +79,54 @@ public class Juego {
         System.out.println("\n¡Bienvenid@, " + nickname + "!");
     }
 
+    public Personaje AsignarPuntos(String genero, String nombrePersonaje) {
+        // Característica principal eliminada por completo
+
+        short fuerza = 5;
+        short resistencia = 5;
+        short velocidad = 5;
+        short puntosRestantes = 10;
+
+        System.out.println("\nAtributos base: Fuerza=5, Resistencia=5, Velocidad=5");
+        System.out.println("Tienes 10 puntos para distribuir.");
+
+        while (puntosRestantes > 0) {
+            
+            System.out.println("\nPuntos restantes: " + puntosRestantes);
+            System.out.println("1. Fuerza");
+            System.out.println("2. Resistencia");
+            System.out.println("3. Velocidad");
+            System.out.println("4. Reiniciar");
+            short stat = Validaciones.obtenerOpcionValida("Selecciona un atributo a modificar: ", (short) 1, (short) 3);
+
+            short cantidad = Validaciones.obtenerOpcionValida("¿Cuántos puntos gastar (1-" + puntosRestantes + ")? ",
+                    (short) 1,
+                    puntosRestantes);
+
+            switch (stat) {
+                case 1:
+                    fuerza += cantidad;
+                    break;
+                case 2:
+                    resistencia += cantidad;
+                    break;
+                case 3:
+                    velocidad += cantidad;
+                    break;
+                case 4:
+                    fuerza= 5;
+                    resistencia=5;
+                    puntosRestantes=10;
+                    break;
+            }
+
+            puntosRestantes -= cantidad;
+        }
+        Personaje heroe = new Personaje(nombrePersonaje, genero, fuerza, resistencia, velocidad);
+        heroe.setCaracteristica("Neutral");
+        return heroe;
+    }
+
     public void iniciarNuevaPartida() {
         System.out.println("\n--- Creación de personaje ---");
 
@@ -96,43 +144,7 @@ public class Juego {
 
         // Característica principal eliminada por completo
 
-        short fuerza = 5;
-        short resistencia = 5;
-        short velocidad = 5;
-        short puntosRestantes = 10;
-
-        System.out.println("\nAtributos base: Fuerza=5, Resistencia=5, Velocidad=5");
-        System.out.println("Tienes 10 puntos para distribuir.");
-
-        while (puntosRestantes > 0) {
-            System.out.println("\nPuntos restantes: " + puntosRestantes);
-            System.out.println("1. Aumentar Fuerza");
-            System.out.println("2. Aumentar Resistencia");
-            System.out.println("3. Aumentar Velocidad");
-            short stat = Validaciones.obtenerOpcionValida("Elige el atributo a mejorar: ", (short) 1, (short) 3);
-
-            short cantidad = Validaciones.obtenerOpcionValida("¿Cuántos puntos gastar (1-" + puntosRestantes + ")? ",
-                    (short) 1,
-                    puntosRestantes);
-
-            switch (stat) {
-                case 1:
-                    fuerza += cantidad;
-                break;
-                    case 2:
-                    resistencia += cantidad;
-                break;
-                case 3:
-                    velocidad += cantidad;
-                break;
-            }
-
-            puntosRestantes -= cantidad;
-        }
-
-        // Creamos personaje sin característica
-        Personaje heroe = new Personaje(nombrePersonaje, genero, fuerza, resistencia, velocidad);
-        heroe.setCaracteristica("Neutral");
+        Personaje heroe= AsignarPuntos(genero, nombrePersonaje);
 
         partidaActual = new Partida(usuarioActual, heroe);
         juegoEnCurso = true;
@@ -172,11 +184,8 @@ public class Juego {
 
                 System.out.println("Has elegido: " + accionElegida);
 
-                afectarAtributos(menuElegido, partidaActual.getPersonaje());
 
-                if (claveEscenaActual.equals("escena_grito") && eleccion == 1) {
-                    eventoAleatorio(partidaActual.getPersonaje());
-                }
+                
 
                 if (siguienteClave.equals("combate")) {
                     boolean victoria = combatir(partidaActual.getPersonaje());
@@ -216,33 +225,6 @@ public class Juego {
         }
     }
 
-    public void afectarAtributos(Respuestas menu, Personaje personaje) {
-        String texto = menu.getTexto().toLowerCase();
-        if (texto.contains("absorber") || texto.contains("tomar")) {
-            Atributos.aumentarResistencia(personaje, (short) 2);
-            System.out.println("¡Resistencia aumentada en 2!");
-        } else if (texto.contains("explorar") || texto.contains("atacar")) {
-            Atributos.reducirFuerza(personaje, (short) 1);
-            System.out.println("¡Fuerza reducida en 1 por el esfuerzo!");
-        } else if (texto.contains("huir") || texto.contains("correr")) {
-            Atributos.aumentarAgilidad(personaje, (short) 1);
-            System.out.println("¡Velocidad aumentada en 1 por la huida!");
-        }
-    }
-
-    public void eventoAleatorio(Personaje personaje) {
-        short chance = (short) random.nextInt(100);
-        if (chance < 30) {
-            Atributos.aumentarFuerza(personaje, (short) 3);
-            System.out.println("¡Evento aleatorio positivo! Encuentras una fuente de poder. Fuerza +3.");
-        } else if (chance < 60) {
-            Atributos.reducirResistencia(personaje, (short) 2);
-            System.out.println("¡Evento aleatorio negativo! Una sombra te debilita. Resistencia -2.");
-        } else {
-            System.out.println("¡Evento aleatorio neutral! Nada sucede.");
-        }
-    }
-
     public boolean combatir(Personaje jugador) {
         Personaje enemigo = new Personaje("Entidad Oscura", "Desconocido", "Hostil", (short) 7, (short) 6, (short) 4);
         short vidaJugador = (short) (jugador.getResistencia() * 5);
@@ -257,7 +239,8 @@ public class Juego {
             System.out.println("2. Defender");
             short accion = Validaciones.obtenerOpcionValida("Elige acción: ", (short) 1, (short) 2);
 
-            if (accion == 1) {
+            switch(accion) {
+                case 1:
                 short damage = (short) (jugador.getFuerza() - (enemigo.getResistencia() / 2));
                 if (random.nextInt(100) < enemigo.getVelocidad() * 5) {
                     System.out.println("¡El enemigo esquiva!");
@@ -265,8 +248,10 @@ public class Juego {
                     vidaEnemigo -= Math.max(1, damage);
                     System.out.println("¡Atacas y causas " + damage + " de daño!");
                 }
-            } else {
+                break;
+                case 2:
                 System.out.println("¡Te defiendes! Reduces daño entrante.");
+                break;
             }
 
             if (vidaEnemigo <= 0)

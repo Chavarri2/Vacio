@@ -13,7 +13,7 @@ public class Validaciones {
                 if (opcion >= min && opcion <= max) {
                     return opcion;
                 }
-                System.out.printf("Opción no válida. Debe estar entre %d y %d.%n");
+                System.out.printf("Opción no válida. Debe estar entre %d y %d", min, max);
             } catch (Exception e) {
                 System.out.println("Error: Debes introducir un número entero válido.");
                 LeerScanner.limpiarScanner();
