@@ -4,7 +4,7 @@
             {
                 "ESCENAINICIAL": {
                     "NOMBRE": "EMPEZAR",
-                    "DESCRIPCION": "Despiertas confundido sin reconocer nada a tu alrededor. Hay humedad en el aire cargado y con un olor putrefacto que te quema por dentro los pulmones. Todo a tu alrededor lo sientes siniestro, frío e inerte. Ante ti sólo puedes ver un río de agua correr. Silencioso un barco se acerca, como si flotase, y sobre él un hombre encapuchado que amarra la barca frente a ti. Algo en él te parece extraño pero no alcanzas a discernir de qué se trata."
+                    "DESCRIPCION": "Despiertas confundido sin reconocer nada a tu alrededor. Hay humedad en el aire cargado y con un olor putrefacto que te quema por dentro los pulmones. Todo a tu alrededor lo sientes siniestro, frío e inerte. Ante ti sólo puedes ver un río de agua correr. Silencioso un barco se acerca, como si flotase, y sobre él un hombre encapuchado que amarra la barca frente a ti. Algo en él te parece extraño pero no alcanzas a discernir de qué se trata.", "ID": "escena_empezar"
                 }
             },
             {
