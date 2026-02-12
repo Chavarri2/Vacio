@@ -2,7 +2,10 @@
     "EVENTOS": {
         "CAP1": [
             {
-                "EMPEZAR": "Despiertas confundido sin reconocer nada a tu alrededor. Hay humedad en el aire cargado y con un olor putrefacto que te quema por dentro los pulmones. Todo a tu alrededor lo sientes siniestro, frío e inerte. Ante ti sólo puedes ver un río de agua correr. Silencioso un barco se acerca, como si flotase, y sobre él un hombre encapuchado que amarra la barca frente a ti. Algo en él te parece extraño pero no alcanzas a discernir de qué se trata."
+                "ESCENAINICIAL": {
+                    "NOMBRE": "EMPEZAR",
+                    "DESCRIPCION": "Despiertas confundido sin reconocer nada a tu alrededor. Hay humedad en el aire cargado y con un olor putrefacto que te quema por dentro los pulmones. Todo a tu alrededor lo sientes siniestro, frío e inerte. Ante ti sólo puedes ver un río de agua correr. Silencioso un barco se acerca, como si flotase, y sobre él un hombre encapuchado que amarra la barca frente a ti. Algo en él te parece extraño pero no alcanzas a discernir de qué se trata."
+                }
             },
             {
                 "HUIR": "Te das la vuelta y corres, invadid@ por un miedo pegajoso a algo que ya es tarde para evitar. Pero no hay lugar en el que esconderse la inmensidad de la bruma y la oscuridad parece carcelaria y por muchos que huyes el barquero vuelve a mostrarse de pie frente a ti"
@@ -39,9 +42,18 @@
         },
         "OPCIONES": {
             "OPCIONESCOMIENZO": [
-                "1. Lanzarse sobre él atacando",
-                "2. Acercarse al hombre.",
-                "3. Tratar de huir, no parece tener buenas intenciones"
+                {
+                    "OPCION": "1. Lanzarse sobre él atacando",
+                    "CLAVE": "ATACAR"
+                },
+                {
+                    "OPCION": "2. Acercarse al hombre",
+                    "CLAVE": "ACERCARSE"
+                },
+                {
+                    "OPCION": "3. Tratar de huir, no parece tener buenas intenciones",
+                    "CLAVE": "HUIR"
+                }
             ],
             "OPCIONESINO": [
                 "Si",
@@ -58,11 +70,11 @@
         ],
         "MENU": [
             "=== MENÚ PRINCIPAL ===",
-        "1. Nueva partida",
-        "2. Ver partidas anteriores",
-        "3. Ver puntuaciones",
-        "4. Salir",
-        "======================"
+            "1. Nueva partida",
+            "2. Ver partidas anteriores",
+            "3. Ver puntuaciones",
+            "4. Salir",
+            "======================"
         ]
     }
 }

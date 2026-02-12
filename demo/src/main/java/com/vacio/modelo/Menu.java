@@ -33,7 +33,7 @@ public class Menu implements Interactuar {
      */
     public Menu(String texto, String claveSiguiente) {
         this.texto = texto;
-        this.claveSiguiente = claveSiguiente;
+        
     }
 
     // Getters y Setters

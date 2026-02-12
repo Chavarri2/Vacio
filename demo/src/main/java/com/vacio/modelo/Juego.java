@@ -3,8 +3,11 @@ package com.vacio.modelo;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
+
+import com.fasterxml.jackson.databind.JsonNode;
 import com.vacio.excepcion.Excepciones;
 import com.vacio.utils.LeerScanner;
+import com.vacio.utils.Utilidades;
 import com.vacio.utils.Validaciones;
 
 import java.util.ArrayList;
@@ -19,8 +22,10 @@ public class Juego {
     private static List<Usuario> usuarios = new ArrayList<>();
 
     private static Random random = new Random();
+    private JsonNode texto = null;
 
     public Juego() {
+        texto = Utilidades.leerArchivo();
     }
 
     public Usuario getusuarioactual() {
@@ -28,47 +33,18 @@ public class Juego {
     }
 
     public void inicializarEscenas() {
+        // ESCENA escena_empezar
+        JsonNode escenaInicio = texto.path("EVENTOS").path("CAP1").path("ESCENAINICIAL");
+        Escena inicio = new Escena( escenaInicio.path("NOMBRE").asText(), escenaInicio.path("TEXTO").asText());
+        
+        //RESPUESTAS escena_empezar
+        JsonNode opcionesEscenaInicio = texto.path("EVENTOS").path("OPCIONES").path("OPCIONESCOMIENZO");
+        for (JsonNode Item : opcionesEscenaInicio) {
+            inicio.getMenus().add(new Menu(Item.path("OPCION").asText(), Item.path("CLAVE").asText()));
+        }
+        //GUARDAR escena_empezar
+        escenas.put(escenaInicio.path("ID").asText(), inicio);
 
-        Escena limboInicial = new Escena("Limbo Inicial",
-                "Te encuentras en un vasto vacío gris. Delante ves tres caminos...");
-        limboInicial.getMenus().add(new Menu("1. Avanzar hacia la luz tenue.", "escena_luz"));
-        limboInicial.getMenus().add(new Menu("2. Retroceder hacia la oscuridad.", "escena_oscuridad"));
-        limboInicial.getMenus().add(new Menu("3. Gritar pidiendo ayuda.", "escena_grito"));
-        escenas.put("limbo_inicial", limboInicial);
-
-        Escena escenaLuz = new Escena("Camino de Luz",
-                "La luz te envuelve, sientes una energía revitalizante... pero ¿es una trampa?");
-        escenaLuz.getMenus().add(new Menu("1. Absorber la luz (aumenta resistencia).", "escena_final_bueno"));
-        escenaLuz.getMenus().add(new Menu("2. Huir de la luz.", "limbo_inicial"));
-        escenas.put("escena_luz", escenaLuz);
-
-        Escena escenaOscuridad = new Escena("Camino de Oscuridad",
-                "La oscuridad te consume, sientes debilidad... pero quizás haya un secreto.");
-        escenaOscuridad.getMenus()
-                .add(new Menu("1. Explorar la oscuridad (riesgo de perder fuerza).", "escena_secreto"));
-        escenaOscuridad.getMenus().add(new Menu("2. Volver atrás.", "limbo_inicial"));
-        escenas.put("escena_oscuridad", escenaOscuridad);
-
-        Escena escenaGrito = new Escena("Eco del Grito", "Tu grito resuena... algo se acerca.");
-        escenaGrito.getMenus().add(new Menu("1. Esperar (evento aleatorio).", "escena_encuentro"));
-        escenaGrito.getMenus().add(new Menu("2. Correr.", "limbo_inicial"));
-        escenas.put("escena_grito", escenaGrito);
-
-        Escena escenaSecreto = new Escena("Secreto en la Oscuridad",
-                "Encuentras un artefacto antiguo que aumenta tu velocidad.");
-        escenaSecreto.getMenus().add(new Menu("1. Tomar el artefacto.", "limbo_inicial"));
-        escenaSecreto.getMenus().add(new Menu("2. Ignorarlo.", "escena_oscuridad"));
-        escenas.put("escena_secreto", escenaSecreto);
-
-        Escena escenaEncuentro = new Escena("Encuentro Misterioso",
-                "Una entidad hostil aparece... ¡prepárate para combatir!");
-        escenaEncuentro.getMenus().add(new Menu("1. Atacar (usa fuerza).", "combate"));
-        escenaEncuentro.getMenus().add(new Menu("2. Defender (usa resistencia).", "combate"));
-        escenaEncuentro.getMenus().add(new Menu("3. Huir (usa velocidad).", "limbo_inicial"));
-        escenas.put("escena_encuentro", escenaEncuentro);
-
-        Escena finalBueno = new Escena("Final Bueno", "Has escapado del limbo con vida. ¡Victoria!");
-        escenas.put("escena_final_bueno", finalBueno);
     }
 
     public void crearNuevoUsuario() throws Excepciones {
