@@ -3,7 +3,6 @@ package modelo;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
-import java.io.IOException;
 import java.net.URL;
 
 /**
@@ -41,7 +40,8 @@ public class Musica {
                 clip = AudioSystem.getClip();
                 clip.open(audioInputStream);
             }
-
+            clip.setFramePosition(0); // Reinicia al inicio 
+            clip.loop(Clip.LOOP_CONTINUOUSLY); // Bucle infinito
             clip.start();
             System.out.println("Reproduciendo música...");
         } catch (Exception e) {
