@@ -290,7 +290,7 @@ public class Juego {
         System.out.println((usuarios.size() + 1) + ". Crear nuevo usuario");
         System.out.println("============================");
 
-        short opcion = Validaciones.obtenerOpcionValida("Selecciona un usuario: ", (short) 1,
+        short opcion = Validaciones.obtenerOpcionValida("Selecciona una opcion: ", (short) 1,
                 (short) (usuarios.size() + 1));
 
         if (opcion == usuarios.size() + 1) {
