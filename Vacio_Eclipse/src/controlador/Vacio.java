@@ -1,7 +1,7 @@
 package controlador;
 import modelo.InstanciaJuego;
 import modelo.Juego;
-import modelo.Mostrar;
+import modelo.Vista;
 import modelo.Musica;
 import utils.Validaciones;
 
@@ -23,7 +23,7 @@ public class Vacio {
         InstanciaJuego instancia= new InstanciaJuego();
 
         Juego juego = new Juego(instancia);
-        Mostrar mostrar = new Mostrar(instancia);
+        Vista mostrar = new Vista(instancia);
         try {
             // IMPRIMIR MENU1
             mostrar.mostrarTituloPrincipal();

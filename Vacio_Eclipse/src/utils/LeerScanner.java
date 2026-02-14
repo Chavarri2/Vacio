@@ -25,7 +25,7 @@ public class LeerScanner {
      * @param mensaje El mensaje que se mostrará al usuario antes de leer el valor
      * @return El número entero introducido por el usuario
      */
-    public static short leerEntero(String mensaje) {
+    public static short leerShort(String mensaje) {
         System.out.println(mensaje);
         short numero = (short) teclado.nextInt();
         teclado.nextLine(); // Limpiar el salto de línea pendiente

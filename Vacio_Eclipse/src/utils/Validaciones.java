@@ -2,34 +2,53 @@ package utils;
 
 import java.util.InputMismatchException;
 
+import excepcion.Excepciones;
+
 /**
  * Lee un entero de forma segura con mensaje y reintento automático si falla.
  */
 public class Validaciones {
     public static short obtenerOpcionValida(String mensaje, short min, short max) {
-        while (true) {
+    	short opcion = 0;
+    	while (true) {
             try {
-                short opcion = leerEnteroSeguro(mensaje);
-                if (opcion >= min && opcion <= max) {
-                    return opcion;
+            	opcion = leerShortSeguro(mensaje);
+                if (!(opcion >= min && opcion <= max)) {
+                    throw new Excepciones("Opción no valida. El numero debe estar entre "+min+" y "+max);
                 }
-                System.out.printf("Opción no válida. Debe estar entre %d y %d ", min, max);
-            } catch (Exception e) {
-                System.out.println("Error: Debes introducir un número entero válido.");
+            } catch (Excepciones e) {
+            	System.out.println(e.getMessage());
                 LeerScanner.limpiarScanner();
             }
+            return opcion;
         }
     }
 
-    public static short leerEnteroSeguro(String mensaje) {
+    public static short leerShortSeguro(String mensaje) {
         while (true) {
             try {
-                return LeerScanner.leerEntero(mensaje);
+                return LeerScanner.leerShort(mensaje);
             } catch (InputMismatchException e) {
                 System.out.println("Error: Debes introducir un número entero válido.");
                 LeerScanner.limpiarScanner();
             }
         }
+    }
+  //Pide el nombre real del usuario por teclado y lanza una excepcion
+    public static String ingresarNombre(String nombre, String mensaje, String pattern, String error) {
+    	while (true) {
+			try {
+				nombre = LeerScanner.leerString(mensaje).trim();
+				if (!nombre.matches(pattern)) {
+					throw new Excepciones(error);
+				}
+				break;
+			} catch (Excepciones e) {
+				System.out.println(e.getMessage());
+				LeerScanner.limpiarScanner();
+			}
+		}
+    	return nombre;
     }
 
 }

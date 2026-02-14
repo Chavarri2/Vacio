@@ -1,12 +1,15 @@
 package modelo;
 
 import java.util.List;
+
+import excepcion.Excepciones;
+import utils.LeerScanner;
 import utils.Utilidades;
 
-public class Mostrar{
+public class Vista{
 
 private final InstanciaJuego instancia;
-    public Mostrar(InstanciaJuego instancia) {
+    public Vista(InstanciaJuego instancia) {
         this.instancia=instancia;
     }
 
@@ -63,5 +66,6 @@ private final InstanciaJuego instancia;
         for(String texto: menu){
             System.out.println(texto);
         }
+     
     }
 }

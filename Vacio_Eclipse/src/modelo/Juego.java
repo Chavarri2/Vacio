@@ -17,8 +17,10 @@ public class Juego {
 	private static boolean juegoEnCurso = false;
 	private static List<Usuario> usuarios = new ArrayList<>();
 	private final InstanciaJuego instancia;
+	private Vista vista;
+
 	public Juego(InstanciaJuego instancia) {
-		this.instancia=instancia;
+		this.instancia = instancia;
 		instancia.setTexto(Utilidades.leerArchivo());
 	}
 
@@ -37,33 +39,17 @@ public class Juego {
 
 	}
 
-	public void crearNuevoUsuario(){
+	public void crearNuevoUsuario() throws Excepciones {
 		System.out.println("\nBienvenid@ al Limbo...");
 
 		String nombre = null;
-		while (true) {
-			nombre = LeerScanner.leerString("Introduce tu nombre real: ").trim();
-			if (nombre.matches("^[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{2,50}$")) {
-				break;
-			}
-			System.out.println("El nombre solo puede contener letras y espacios (2-50 caracteres). Intenta de nuevo.");
-		}
-
 		String nickname = null;
-		while (true) {
-			nickname = LeerScanner.leerString("Elige un nickname: ").trim();
-			if (nickname.matches("^[\\w\\-\\. ]{3,20}$")) {
-				break;
-			}
-			System.out.println(
-					"El nickname puede contener letras, números, guiones, puntos y espacios (3-20 caracteres). Intenta de nuevo.");
-		}
-
 		short edad = 0;
-		while (edad < 13 || edad > 120) {
-			edad = Validaciones.leerEnteroSeguro("Introduce tu edad (13-120 años): ");
-		}
 
+		nombre= Validaciones.ingresarNombre(nombre, "Ingresa tu nombre real", "^[A-Za-zÁÉÍÓÚÜáéíóúüÑñ ]{2,50}$","Tu nombre solo puede contener letras de la A a la Z y debe tener de 2-50 caracteres");
+		nickname= Validaciones.ingresarNombre(nickname, "Ingresa tu nickname", "^[\\w\\-\\. ]{3,20}$", "El nickname puede contener letras, números, guiones, puntos y espacios (3-20 caracteres). Intenta de nuevo.");
+		edad=Validaciones.obtenerOpcionValida("Introduce tu edad (13-120 años): ",(short) 13, (short) 120);
+		
 		instancia.setUsuarioActual(new Usuario(nombre, nickname, edad));
 		usuarios.add(instancia.getUsuarioActual());
 		System.out.println("\n¡Bienvenid@, " + nickname + "!");
@@ -77,70 +63,67 @@ public class Juego {
 		short velocidad = 5;
 		short puntosRestantes = 10;
 		short stat = 1;
-		short cantidad=0;
+		short cantidad = 0;
 
 		System.out.println("\nAtributos base: Fuerza=5, Resistencia=5, Velocidad=5");
 		System.out.println("Tienes 10 puntos para distribuir.");
 
-		do{
+		do {
 
 			System.out.println("\nPuntos restantes: " + puntosRestantes);
-			System.out.println("Estadisticas Actuales: Fuerza: "+fuerza+", Resistencia: "+resistencia+", Velocidad: " + velocidad+"\n");
-			System.out.println("0. Empezar\n"
-					+"1. Fuerza\n"
-					+"2. Resistencia\n"
-					+"3. Velocidad\n"
-					+"4. Reiniciar\n");
-			
-			if(puntosRestantes>=0) {
+			System.out.println("Estadisticas Actuales: Fuerza: " + fuerza + ", Resistencia: " + resistencia
+					+ ", Velocidad: " + velocidad + "\n");
+			System.out
+					.println("0. Empezar\n" + "1. Fuerza\n" + "2. Resistencia\n" + "3. Velocidad\n" + "4. Reiniciar\n");
+
+			if (puntosRestantes >= 0) {
 				stat = Validaciones.obtenerOpcionValida("Selecciona un atributo a modificar: ", (short) 0, (short) 4);
-				
-				if(stat!=4 && stat!=0 && puntosRestantes!=0 && puntosRestantes>0){
+
+				if (stat != 4 && stat != 0 && puntosRestantes != 0 && puntosRestantes > 0) {
 					cantidad = Validaciones.obtenerOpcionValida("¿Cuántos puntos gastar (1-" + puntosRestantes + ")? ",
-							(short) 1,
-							puntosRestantes);
+							(short) 1, puntosRestantes);
 				}
 			}
 			switch (stat) {
-				case 0:
-					puntosRestantes=-1;
-					System.out.println("Ha finalizado la personalizacion de las estadisticas");
+			case 0:
+				puntosRestantes = -1;
+				System.out.println("Ha finalizado la personalizacion de las estadisticas");
 				break;
-				case 1:
-					if(puntosRestantes>0) {
-						fuerza += cantidad;
-						puntosRestantes -= cantidad;
-					}else {
-						System.out.println("Puntos insuficientes");
-					}
-					break;	
-				case 2:
-					if(puntosRestantes>0) {
-						resistencia += cantidad;
-						puntosRestantes -= cantidad;
-					}else {
-						System.out.println("Puntos insuficientes");
-					}
-					break;
-				case 3:
-					if(puntosRestantes>0) {
-						velocidad += cantidad;
-						puntosRestantes -= cantidad;
-					}else {
-						System.out.println("Puntos insuficientes");
-					}
-					break;
-				case 4:
-					fuerza= 5;
-					resistencia=5;
-					velocidad=5;
-					puntosRestantes=10;
-					break;
-				default:
-					System.out.println("¡Opción invalida! intente de nuevo");
-					break;
+			case 1:
+				if (puntosRestantes > 0) {
+					fuerza += cantidad;
+					puntosRestantes -= cantidad;
+				} else {
+					System.out.println("Puntos insuficientes");
+				}
+				break;
+			case 2:
+				if (puntosRestantes > 0) {
+					resistencia += cantidad;
+					puntosRestantes -= cantidad;
+				} else {
+					System.out.println("Puntos insuficientes");
+				}
+				break;
+			case 3:
+				if (puntosRestantes > 0) {
+					velocidad += cantidad;
+					puntosRestantes -= cantidad;
+				} else {
+					System.out.println("Puntos insuficientes");
+				}
+				break;
+			case 4:
+				fuerza = 5;
+				resistencia = 5;
+				velocidad = 5;
+				puntosRestantes = 10;
+				break;
+			default:
+				System.out.println("¡Opción invalida! intente de nuevo");
+				break;
 			}
-		}while (puntosRestantes >= 0);
+		} while (puntosRestantes >= 0);
 		Personaje heroe = new Personaje(nombrePersonaje, genero, fuerza, resistencia, velocidad);
 		heroe.setCaracteristica("Neutral");
 		return heroe;
@@ -163,7 +146,7 @@ public class Juego {
 
 		// Característica principal eliminada por completo
 
-		Personaje heroe= AsignarPuntos(genero, nombrePersonaje);
+		Personaje heroe = AsignarPuntos(genero, nombrePersonaje);
 
 		partidaActual = new Partida(instancia.getUsuarioActual(), heroe);
 		juegoEnCurso = true;
@@ -180,7 +163,8 @@ public class Juego {
 				Escena escenaActual = escenas.get(claveEscenaActual);
 				if (escenaActual == null) {
 					System.out.println("Escena no encontrada. Volviendo al inicial.");
-					claveEscenaActual = instancia.getTexto().path("EVENTOS").path("CAP1").path("ESCENAINICIAL").path("ID").asText();
+					claveEscenaActual = instancia.getTexto().path("EVENTOS").path("CAP1").path("ESCENAINICIAL")
+							.path("ID").asText();
 					continue;
 				}
 				Utilidades.typeWriter("\n" + escenaActual.getDescripcion(), 10);
@@ -193,7 +177,7 @@ public class Juego {
 
 				short eleccion = Validaciones.obtenerOpcionValida("Tu decisión: ", (short) 1,
 						(short) escenaActual.getMenus().size());
-				
+
 				Respuestas menuElegido = escenaActual.getMenus().get(eleccion - 1);
 				String accionElegida = menuElegido.getTexto();
 				String siguienteClave = menuElegido.getClave();
@@ -204,10 +188,10 @@ public class Juego {
 				System.out.println("Has elegido: " + accionElegida);
 
 				if (siguienteClave.equals("combate")) {
-					boolean victoria = false;		
-					
+					boolean victoria = false;
+
 					victoria = Combatir.combate(partidaActual.getPersonaje());
-					
+
 					if (victoria) {
 						siguienteClave = "escena_final_bueno";
 					} else {
@@ -243,7 +227,6 @@ public class Juego {
 			System.out.println("Error inesperado durante la partida: " + e.getMessage());
 		}
 	}
-
 
 	public void seleccionarOcrearUsuario() throws Excepciones {
 		System.out.println("\n=== Usuarios disponibles ===");
