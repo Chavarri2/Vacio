@@ -52,7 +52,7 @@ public class LeerFile {
             return mapper.readTree(is);
 
         } catch (Exception e) {
-            System.out.println("Error en LeerFile");
+            System.out.println("Lo sentimos hemos tenido un problema en leyendo algunos archivos");
             return null;
         }
     }

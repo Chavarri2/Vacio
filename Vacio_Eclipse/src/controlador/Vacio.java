@@ -51,7 +51,6 @@ public class Vacio {
                     case 4:
                     	if(PLAY==1) {
                     		Musica.pausar();
-                    		System.out.println("\nMusica pausada\n");
                     		PLAY=0;
                     	}else {
                     		System.out.println("La musica ya esta pausada");
@@ -60,7 +59,6 @@ public class Vacio {
                     case 5:
                     	if(PLAY==0) {
                     		Musica.reproducir();
-                    		System.out.println("\nMusica pausada\n");
                     		PLAY=1;
                     	}else {
                     		System.out.println("\nLa musica ya se esta reproduciendo\n");

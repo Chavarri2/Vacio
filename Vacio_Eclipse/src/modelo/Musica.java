@@ -45,6 +45,7 @@ public class Musica {
             clip.setFramePosition(0); // Reinicia al inicio
             clip.loop(Clip.LOOP_CONTINUOUSLY); // Bucle infinito
             clip.start();
+            System.out.println("\nReproduciendo música.\n");
         } catch (Exception e) {
             System.out.println("Error al reproducir música: " + e.getMessage());
         }
@@ -56,7 +57,7 @@ public class Musica {
     public static void pausar() {
         if (clip != null && clip.isRunning()) {
             clip.stop();
-            System.out.println("Música pausada.");
+            System.out.println("\nMúsica pausada.\n");
         }
     }
 }

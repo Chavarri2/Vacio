@@ -2,7 +2,6 @@ package modelo;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Random;
 import com.fasterxml.jackson.databind.JsonNode;
 import excepcion.Excepciones;
 import utils.LeerScanner;
@@ -17,7 +16,6 @@ public class Juego {
 	private static Partida partidaActual;
 	private static boolean juegoEnCurso = false;
 	private static List<Usuario> usuarios = new ArrayList<>();
-	private static Random random = new Random();
 	private final InstanciaJuego instancia;
 	public Juego(InstanciaJuego instancia) {
 		this.instancia=instancia;
@@ -39,7 +37,7 @@ public class Juego {
 
 	}
 
-	public void crearNuevoUsuario() throws Excepciones {
+	public void crearNuevoUsuario(){
 		System.out.println("\nBienvenid@ al Limbo...");
 
 		String nombre = null;
@@ -96,6 +94,7 @@ public class Juego {
 			
 			if(puntosRestantes>=0) {
 				stat = Validaciones.obtenerOpcionValida("Selecciona un atributo a modificar: ", (short) 0, (short) 4);
+				
 				if(stat!=4 && stat!=0 && puntosRestantes!=0 && puntosRestantes>0){
 					cantidad = Validaciones.obtenerOpcionValida("¿Cuántos puntos gastar (1-" + puntosRestantes + ")? ",
 							(short) 1,
@@ -194,7 +193,7 @@ public class Juego {
 
 				short eleccion = Validaciones.obtenerOpcionValida("Tu decisión: ", (short) 1,
 						(short) escenaActual.getMenus().size());
-
+				
 				Respuestas menuElegido = escenaActual.getMenus().get(eleccion - 1);
 				String accionElegida = menuElegido.getTexto();
 				String siguienteClave = menuElegido.getClave();
@@ -204,11 +203,11 @@ public class Juego {
 
 				System.out.println("Has elegido: " + accionElegida);
 
-
-
-
 				if (siguienteClave.equals("combate")) {
-					boolean victoria = combatir(partidaActual.getPersonaje());
+					boolean victoria = false;		
+					
+					victoria = Combatir.combate(partidaActual.getPersonaje());
+					
 					if (victoria) {
 						siguienteClave = "escena_final_bueno";
 					} else {
@@ -245,57 +244,6 @@ public class Juego {
 		}
 	}
 
-	public boolean combatir(Personaje jugador) {
-		Personaje enemigo = new Personaje("Entidad Oscura", "Desconocido", "Hostil", (short) 7, (short) 6, (short) 4);
-		short vidaJugador = (short) (jugador.getResistencia() * 5);
-		short vidaEnemigo = (short) (enemigo.getResistencia() * 5);
-
-		System.out.println("\n¡Combate iniciado contra " + enemigo.getNombre() + "!");
-		enemigo.mostrar();
-
-		while (vidaJugador > 0 && vidaEnemigo > 0) {
-			System.out.println("\nTu turno: Vida=" + vidaJugador + " | Enemigo Vida=" + vidaEnemigo);
-			System.out.println("1. Atacar");
-			System.out.println("2. Defender");
-			short accion = Validaciones.obtenerOpcionValida("Elige acción: ", (short) 1, (short) 2);
-
-			switch(accion) {
-			case 1:
-				short damage = (short) (jugador.getFuerza() - (enemigo.getResistencia() / 2));
-				if (random.nextInt(100) < enemigo.getVelocidad() * 5) {
-					System.out.println("¡El enemigo esquiva!");
-				} else {
-					vidaEnemigo -= Math.max(1, damage);
-					System.out.println("¡Has atacado usando Jabs! daño causado al enemigo: " + damage + " puntos");
-				}
-				break;
-			case 2:
-				System.out.println("¡Defensa rapida! Se ha reducido daño entrante.");
-				break;
-			}
-
-			if (vidaEnemigo <= 0)
-				break;
-
-			short damageEnemigo = (short) (enemigo.getFuerza() - (jugador.getResistencia() / 2));
-			if (accion == 2)
-				damageEnemigo /= 2;
-			if (random.nextInt(100) < jugador.getVelocidad() * 5) {
-				System.out.println("¡Esquivas el ataque enemigo!");
-			} else {
-				vidaJugador -= Math.max(1, damageEnemigo);
-				System.out.println("El enemigo ataca y causa " + damageEnemigo + " de daño.");
-			}
-		}
-
-		if (vidaJugador > 0) {
-			System.out.println("\n¡Victoria! Has derrotado al enemigo.");
-			return true;
-		} else {
-			System.out.println("\nDerrota... El enemigo te ha vencido.");
-			return false;
-		}
-	}
 
 	public void seleccionarOcrearUsuario() throws Excepciones {
 		System.out.println("\n=== Usuarios disponibles ===");

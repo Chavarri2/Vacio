@@ -28,6 +28,7 @@ public class Respuestas implements Interactuar {
      **/
     public Respuestas(String texto, String clave) {
         this.texto = texto;
+        this.clave=clave;
 
     }
 
