@@ -189,8 +189,8 @@ public class Juego {
 
 				if (siguienteClave.equals("combate")) {
 					boolean victoria = false;
-
-					victoria = Combatir.combate(partidaActual.getPersonaje());
+					Combatir combate = new Combatir();
+					victoria = combate.batalla(partidaActual.getPersonaje(), "Pepe", "Hombre", "Hostil");
 
 					if (victoria) {
 						siguienteClave = "escena_final_bueno";
