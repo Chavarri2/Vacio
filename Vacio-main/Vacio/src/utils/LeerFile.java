@@ -3,7 +3,11 @@ package utils;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import java.io.InputStream;
+import excepcion.Excepciones;
+
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 /**
  * Clase encargada de la lectura de archivos JSON ubicados dentro del directorio
@@ -42,18 +46,15 @@ public class LeerFile {
             ObjectMapper mapper = new ObjectMapper();
 
             // Cargar archivo desde resources
-            InputStream is = getClass().getResourceAsStream(path);
+            String json=Files.readString(Paths.get(path));
 
-            if (is == null) {
-                System.out.println("ERROR: No se encontró el archivo JSON.");
-                return null;
-            }
 
-            return mapper.readTree(is);
+            JsonNode root = mapper.readTree(json);
+            return root;
 
         } catch (Exception e) {
-            System.out.println("Lo sentimos hemos tenido un problema en leyendo algunos archivos");
-            return null;
+        	System.out.println(e.getMessage());
+        	return null;
         }
     }
 }

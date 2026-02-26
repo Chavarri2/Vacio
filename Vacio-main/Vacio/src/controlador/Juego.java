@@ -50,11 +50,13 @@ public class Juego {
 	    String claveInicial = instancia.getTexto()
 	        .path("EVENTOS").path("CAP1").path("ESCENAINICIAL").path("ID").asText();
 
-	    // Jugar
+	    // Jugar primera escena
 	    jugarPartida(claveInicial);
+	    
+	    
 	}
 
-	//Genera el juego
+	//Genera la sucesión de escenas de el juego
 	
 	public void jugarPartida(String claveEscenaActual) {
 		try {

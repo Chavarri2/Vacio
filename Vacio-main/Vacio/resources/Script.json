@@ -53,7 +53,7 @@
                 "LLEGADAVACIO": {
 					"NOMBRE":"ESCENAEMBARCAR",
 					"TEXTO":"El barco comienza a moverse, atravesando la nada",
-					"ID": "escena_embarcar",
+					"ID": "escena_embarcar"
 				}
 				 
             }
@@ -62,7 +62,7 @@
             "MALO": {
 				"NOMBRE":"RIOESTIGIO",
 				"TEXTO": "Todo a tu alrededor es agua, un mar infinito. Sin quererlo te has olvidado de tu nombre, tu vida, del barquero y cada parte de tu historia. Te has convertido en un alma más atrapada en el río estigio, condenada a olvidar",
-				"ID": "final_rioestigio",
+				"ID": "final_rioestigio"
 			}
 		},
         "ANUNCIOS": {

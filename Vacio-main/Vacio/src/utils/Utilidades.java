@@ -18,7 +18,7 @@ public class Utilidades {
     // Métodos auxiliares si es necesario
     public static JsonNode leerArchivo () {
         LeerFile leer = new LeerFile();
-        return leer.GetJsonNode("/Script.json");
+        return leer.GetJsonNode("C:\\Users\\vilun\\Documents\\GitHub\\Vacio\\Vacio-main\\Vacio\\resources\\Script.json");
     }
     public static List < String> jsonToList(JsonNode json){
         List <String> resultado = new ArrayList<>();

@@ -22,7 +22,7 @@ public class Vacio {
         InstanciaJuego instancia= new InstanciaJuego();
         Juego juego = new Juego(instancia, new HashMap<>());
         Vista mostrar=new Vista(instancia);
-        Menu.menu(play, instancia, mostrar, juego);   
+        Menu.menu(play, instancia, mostrar, juego);
     }
    
 
