@@ -24,4 +24,9 @@ public class ControladorPartida {
     	heroe.mostrar(); 
     	return partida; 
     }
+	public static Partida TestNewPartida(InstanciaJuego instancia){
+        Personaje heroe = new Personaje("Pepe el Tiefling", "Hombre", (short) 10, (short)10,(short) 10);
+        Partida partida = new Partida(instancia.getUsuarioActual(), heroe); 
+        return partida; 
+    } 
 }

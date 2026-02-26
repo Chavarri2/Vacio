@@ -23,7 +23,7 @@ public class ControladorEscena {
 		escenas.put(escenaInicio.path("ID").asText(), inicio);
 		
 		//ESCENA escena_empezar_huir
-		JsonNode escenaInicioHuir = instancia.getTexto().path("EVENTOS").path("CAP1").path("RESPUESTAINCIAL1");
+		JsonNode escenaInicioHuir = instancia.getTexto().path("EVENTOS").path("CAP1").path("RESPUESTAINICIAL1");
 		Escena inicioHuir = new Escena(escenaInicioHuir.path("NOMBRE").asText(), escenaInicioHuir.path("TEXTO").asText());
 		
 		// RESPUESTAS escena_empezar_huir
@@ -36,14 +36,13 @@ public class ControladorEscena {
 		escenas.put(escenaInicioHuir.path("ID").asText(), inicioHuir);
 		
 		// ESCENA escena_empezar_acercarse
-		JsonNode escenaInicioAcercarse = instancia.getTexto().path("EVENTOS").path("CAP1").path("RESPUESTAINICIA2");
+		JsonNode escenaInicioAcercarse = instancia.getTexto().path("EVENTOS").path("CAP1").path("RESPUESTAINICIAL2");
 		Escena inicioAcercarse = new Escena(escenaInicioAcercarse.path("NOMBRE").asText(), escenaInicioAcercarse.path("TEXTO").asText());
 		
 		// RESPUESTAS escena_empezar_acercarse
-		JsonNode opcionesEscenaInicioAcercarse = instancia.getTexto().path("EVENTOS").path("OPCIONES").path("OPCIONESCOMIENZO");
-		for (JsonNode Item : opcionesEscenaInicioAcercarse) {
-			inicioAcercarse.getMenus().add(new Respuestas(Item.path("OPCION").asText(), Item.path("CLAVE").asText()));
-		}
+		JsonNode seguirCap2 = instancia.getTexto().path("EVENTOS").path("OPCIONES").path("SEGUIRCAPITULO2");
+		inicioAcercarse.getMenus().add(new Respuestas(seguirCap2.path("OPCION").asText(), seguirCap2.path("CLAVE").asText()));
+		
 		// GUARDAR escena_empezar_acercarse
 		escenas.put(escenaInicioAcercarse.path("ID").asText(), inicioAcercarse);
 		
@@ -69,6 +68,17 @@ public class ControladorEscena {
 		
 		// GUARDAR escena_empezar_atacar
 		escenas.put(finalRioestigio.path("ID").asText(), finalMalo);
+		
+		//ESCENA escena_embarcar
+		JsonNode escenaEmbarcar = instancia.getTexto().path("EVENTOS").path("CAP2").path("LLEGADAVACIO");
+		Escena embarcar = new Escena(escenaEmbarcar.path("NOMBRE").asText(), escenaEmbarcar.path("TEXTO").asText());
+		
+		// RESPUESTAS escena_embarcar
+		JsonNode respuestasEmbarcar = instancia.getTexto().path("EVENTOS").path("OPCIONES").path("OPCIONESVACIO");
+		embarcar.getMenus().add(new Respuestas(respuestasEmbarcar.path("OPCION").asText(), respuestasEmbarcar.path("CLAVE").asText()));
+		
+		// GUARDAR escena_embarcar
+		escenas.put(escenaEmbarcar.path("ID").asText(), embarcar);
 		
 	}
 }

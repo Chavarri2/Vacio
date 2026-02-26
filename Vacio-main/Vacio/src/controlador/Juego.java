@@ -43,7 +43,8 @@ public class Juego {
 	    ControladorUsuario.seleccionarOcrearUsuario(instancia, usuarios);
 
 	    // Iniciar nueva partida
-	    partidaActual = ControladorPartida.iniciarNuevaPartida(instancia);
+	    partidaActual=ControladorPartida.TestNewPartida(instancia);
+	    //partidaActual = ControladorPartida.iniciarNuevaPartida(instancia);
 	    juegoEnCurso = true;
 
 	    // Obtener clave inicial

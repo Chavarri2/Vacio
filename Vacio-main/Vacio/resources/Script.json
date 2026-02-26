@@ -8,12 +8,12 @@
             },
             "RESPUESTAINICIAL1": {
                 "NOMBRE": "HUIR",
-                "TEXTO": "Te das la vuelta y corres, invadid@ por un miedo pegajoso a algo que ya es tarde para evitar. Pero no hay lugar en el que esconderse la inmensidad de la bruma y la oscuridad parece carcelaria y por muchos que huyes el barquero vuelve a mostrarse de pie frente a ti",
+                "TEXTO": "Te das la vuelta y corres, invadid@ por un miedo pegajoso a algo que ya es tarde para evitar.\nPero no hay lugar en el que esconderse la inmensidad de la bruma.\n La oscuridad parece carcelaria y por muchos que huyes el barquero vuelve a mostrarse de pie frente a ti",
                 "ID": "escena_empezar_huir"
             },
             "RESPUESTAINICIAL2": {
                 "NOMBRE": "ACERCARSE",
-                "TEXTO": "Te acercas despacio, aceptando como se han presentado los hechos. Él extiende su mano hacia ti paciente y en silencio. Y tú sin saber la razón te llevas la mano al bolsillo, sacando una moneda que colocas sobre su mano gelida. Después subes al barco y te sientas mientras él agarra los remos.",
+                "TEXTO": "Te acercas despacio, aceptando como se han presentado los hechos.\n Él extiende su mano hacia ti paciente y en silencio.\n Y tú sin saber la razón te llevas la mano al bolsillo, sacando una moneda que colocas sobre su mano gelida.\n Después subes al barco y te sientas mientras él agarra los remos.",
                 "ID": "escena_empezar_acercarse"
             },
             "RESPUESTAINICIAL3": {
@@ -22,15 +22,18 @@
                 "ID": "escena_empezar_atacar"
             }
         },
-        "CAP2": [
-            {
+        "CAP2": {
                 "LLEGADAVACIO": {
                     "NOMBRE": "ESCENAEMBARCAR",
-                    "TEXTO": "El barco comienza a moverse, atravesando la nada",
+                    "TEXTO": "El barco comienza a moverse, atravesando la nada.\n Tardaís un tiempo en ver tierra firme, pero el hombre no dice una sola palabra.\n Una vez el barco llega a su destino te bajas, pisando con los pies descalzos la arena negra.\n Y el barquero marcha, sin mirarte a ti ni a su alrededor",
                     "ID": "escena_embarcar"
+                },
+                "COMBATE1": {
+                    "NOMBRE": "ESCENAEMBARCAR",
+                    "TEXTO": "Das vueltas sobre ti mismo tratando de distinguir algo en la distancia, o cercanias\n Pero alli no hay nada \n \"¿Donde estoy\" Te preguntas hasta que una melodia llama tu atención",
+                    "ID": "introduce_combate"
                 }
-            }
-        ],
+            },
         "FINALES": {
             "MALO": {
                 "NOMBRE": "RIOESTIGIO",
@@ -61,10 +64,20 @@
                     "OPCION": "Continuar",
                     "CLAVE": "final_rioestigio"
                 },
-             "ACABA": 
+            "ACABA": 
                 {
                     "OPCION": "Continuar",
                     "CLAVE": "null"
+                },
+            "SEGUIRCAPITULO2": 
+                {
+                    "OPCION": "Continuar",
+                    "CLAVE": "escena_embarcar"
+                },
+            "OPCIONESVACIO":
+                {
+                    "OPCION": "Mirar alrededor",
+                    "CLAVE": "introduce_combate"
                 }
             
         }

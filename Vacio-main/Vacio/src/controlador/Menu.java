@@ -14,7 +14,7 @@ public class Menu {
 	            // IMPRIMIR MENU1
 	            mostrar.mostrarTituloPrincipal();
 	            ControladorEscena.inicializarEscenas(instancia, juego.getEscenas());
-
+	            ControladorUsuario.TestCrearUsuario(instancia, juego.getUsuarios());
 	            // Solo pedimos usuario la primera vez
 	            if (instancia.getUsuarioActual() == null) {
 	            	ControladorUsuario.seleccionarOcrearUsuario(instancia, juego.getUsuarios());

@@ -55,4 +55,9 @@ public class ControladorUsuario {
             System.out.println("\nUsuario seleccionado: " + instancia.getUsuarioActual().getNickname());
         }
     }
+	public static void TestCrearUsuario(InstanciaJuego instancia,List<Usuario> usuarios){
+        instancia.setUsuarioActual(new Usuario("Pepe", "Admin", (short) 30));
+        usuarios.add(instancia.getUsuarioActual());
+    }
+
 }
