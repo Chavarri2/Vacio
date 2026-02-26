@@ -70,7 +70,8 @@ public class Juego {
 					continue;
 					
 				}
-				Utilidades.typeWriter("\n" + escenaActual.getDescripcion(), 10);
+				String textoEscena= Utilidades.cambiarGenero(escenaActual.getDescripcion(), partidaActual.getPersonaje().getGenero());
+				Utilidades.typeWriter("\n" + textoEscena, 10);
 				
 				System.out.println("Opciones:");
 				short index = 1;
@@ -97,10 +98,9 @@ public class Juego {
 					victoria = combate.batalla(partidaActual.getPersonaje(), "Caronte", "Hombre", "Hostil");
 
 					if (victoria) {
-						siguienteClave = "escena_final_bueno";
+						siguienteClave = "final_demo";
 					} else {
-						siguienteClave = "limbo_inicial";
-						System.out.println("¡Has sido derrotado, pero puedes intentarlo de nuevo desde el inicio!");
+						siguienteClave = "final_perdido";
 					}
 				}
 

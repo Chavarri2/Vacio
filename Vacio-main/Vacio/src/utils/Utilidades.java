@@ -41,4 +41,15 @@ public class Utilidades {
         }
         System.out.println();
     }
+    public static String cambiarGenero(String texto, String genero) {
+    	char letra;
+    	if(genero=="mujer") {
+    		letra='a';
+    	}else if(genero=="hombre") {
+    		letra='o';
+    	}else {
+    		letra='e';
+    	}
+    	return texto.replace('@', letra);
+    }
 }
