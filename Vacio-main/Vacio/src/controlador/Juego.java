@@ -103,10 +103,10 @@ public class Juego {
 					}
 				}
 
-				if (siguienteClave.contains("final_bueno")) {
-					partidaActual.setResultado(EstadoJuego.GANASTE);
+				if (siguienteClave.contains("null")) {
+					partidaActual.setResultado(EstadoJuego.PERDISTE);
 					juegoEnCurso = false;
-					System.out.println("\n¡Has escapado del limbo! FINAL BUENO.");
+					System.out.println("\n¡Has perdido! FINAL MALO.");
 				} else {
 					claveEscenaActual = siguienteClave;
 				}

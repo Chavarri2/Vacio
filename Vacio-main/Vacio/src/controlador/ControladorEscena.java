@@ -23,7 +23,7 @@ public class ControladorEscena {
 		escenas.put(escenaInicio.path("ID").asText(), inicio);
 		
 		//ESCENA escena_empezar_huir
-		JsonNode escenaInicioHuir = instancia.getTexto().path("EVENTOS").path("CAP1").path("RESPUESTAINCIAL!");
+		JsonNode escenaInicioHuir = instancia.getTexto().path("EVENTOS").path("CAP1").path("RESPUESTAINCIAL1");
 		Escena inicioHuir = new Escena(escenaInicioHuir.path("NOMBRE").asText(), escenaInicioHuir.path("TEXTO").asText());
 		
 		// RESPUESTAS escena_empezar_huir
@@ -36,8 +36,9 @@ public class ControladorEscena {
 		escenas.put(escenaInicioHuir.path("ID").asText(), inicioHuir);
 		
 		// ESCENA escena_empezar_acercarse
-		JsonNode escenaInicioAcercarse = instancia.getTexto().path("EVENTOS").path("CAP1").path("ESCENAINICIAL");
+		JsonNode escenaInicioAcercarse = instancia.getTexto().path("EVENTOS").path("CAP1").path("RESPUESTAINICIA2");
 		Escena inicioAcercarse = new Escena(escenaInicioAcercarse.path("NOMBRE").asText(), escenaInicioAcercarse.path("TEXTO").asText());
+		
 		// RESPUESTAS escena_empezar_acercarse
 		JsonNode opcionesEscenaInicioAcercarse = instancia.getTexto().path("EVENTOS").path("OPCIONES").path("OPCIONESCOMIENZO");
 		for (JsonNode Item : opcionesEscenaInicioAcercarse) {
@@ -47,18 +48,27 @@ public class ControladorEscena {
 		escenas.put(escenaInicioAcercarse.path("ID").asText(), inicioAcercarse);
 		
 		// ESCENA escena_empezar_atacar
-		JsonNode escenaInicioAtacar = instancia.getTexto().path("EVENTOS").path("CAP1").path("ESCENAINICIAL");
+		JsonNode escenaInicioAtacar = instancia.getTexto().path("EVENTOS").path("CAP1").path("RESPUESTAINICIAL3");
 		Escena inicioAtacar = new Escena(escenaInicioAtacar.path("NOMBRE").asText(), escenaInicioAtacar.path("TEXTO").asText());
 		
 		// RESPUESTAS escena_empezar_atacar
-		
-		JsonNode opcionesEscenaInicioAtacar = instancia.getTexto().path("EVENTOS").path("OPCIONES").path("OPCIONESCOMIENZO");
-		for (JsonNode Item : opcionesEscenaInicioAtacar) {
-			inicioAtacar.getMenus().add(new Respuestas(Item.path("OPCION").asText(), Item.path("CLAVE").asText()));
-		}
+		JsonNode opcionesContinuar = instancia.getTexto().path("EVENTOS").path("OPCIONES").path("OPCIONESFINAL");
+		inicioAtacar.getMenus().add(new Respuestas(opcionesContinuar.path("OPCION").asText(), opcionesContinuar.path("CLAVE").asText()));
+				
 		
 		// GUARDAR escena_empezar_atacar
 		escenas.put(escenaInicioAtacar.path("ID").asText(), inicioAtacar);
+		
+		//ESCENA final_rioestigio
+		JsonNode finalRioestigio = instancia.getTexto().path("EVENTOS").path("FINALES").path("MALO");
+		Escena finalMalo = new Escena(finalRioestigio.path("NOMBRE").asText(), finalRioestigio.path("TEXTO").asText());
+		
+		// RESPUESTAS final_rioestigio
+		JsonNode acabar = instancia.getTexto().path("EVENTOS").path("OPCIONES").path("ACABA");
+		finalMalo.getMenus().add(new Respuestas(acabar.path("OPCION").asText(), acabar.path("CLAVE").asText()));
+		
+		// GUARDAR escena_empezar_atacar
+		escenas.put(finalRioestigio.path("ID").asText(), finalMalo);
 		
 	}
 }
