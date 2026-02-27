@@ -116,20 +116,5 @@ public class ControladorEscena {
 		perdido.getMenus().add(new Respuestas(respuestaPerdido.path("OPCION").asText(), respuestaPerdido.path("CLAVE").asText()));
 		// GUARDAR final_perdido
 		escenas.put(finalPerdido.path("ID").asText(), perdido);
-		
-		
-		//ESCENA final_demo
-		JsonNode finalDemo = instancia.getTexto().path("EVENTOS").path("FINALES").path("MALO1");
-		Escena demo = new Escena(finalDemo.path("NOMBRE").asText(), finalDemo.path("TEXTO").asText());
-		// RESPUESTAS final_demo
-		JsonNode respuestaDemo = instancia.getTexto().path("EVENTOS").path("OPCIONES").path("OPCIONESACABA");
-		demo.getMenus().add(new Respuestas(respuestaDemo.path("OPCION").asText(), respuestaDemo.path("CLAVE").asText()));
-		// GUARDAR final_demo
-		escenas.put(finalDemo.path("ID").asText(), demo);
-		
-		
-		
-		
-		
 	}
 }

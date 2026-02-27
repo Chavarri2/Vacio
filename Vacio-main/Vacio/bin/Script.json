@@ -54,11 +54,6 @@
                 "NOMBRE": "HUIR",
                 "TEXTO": "Tratas de escapar. Aún de espaldas te mueves hacía atras arañando la arena.\n Pero por mucho que intentas escapar el suelo parece moverse bajo detras de tu espalda.\n Atrayendote hacía ella. En silencio su arma te atraviesa. \n Y todo su luz se desvanece, como si hubieses estado sol@ todo el tiempo",
                 "ID": "final_huir"
-            },
-            "BUENO": {
-                "NOMBRE": "FINALDEMO",
-                "TEXTO": "Has completado la Demo ¡Enhorabuena!",
-                "ID": "final_demo"
             }
         },
         "OPCIONES": {

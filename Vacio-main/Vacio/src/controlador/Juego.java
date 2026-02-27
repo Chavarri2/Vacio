@@ -70,32 +70,41 @@ public class Juego {
 					continue;
 					
 				}
+				//Cambia cada "@" de el json por la letra correspondiente dependiendo de el genero de tu personaje
 				String textoEscena= Utilidades.cambiarGenero(escenaActual.getDescripcion(), partidaActual.getPersonaje().getGenero());
+				
+				//Escribe la escena
 				Utilidades.typeWriter("\n" + textoEscena, 10);
 				
+				//Escribe las opciones disponibles de cada escena
 				System.out.println("Opciones:");
 				short index = 1;
 				for (Respuestas m : escenaActual.getMenus()) {
 					System.out.println(index + ". " + m.getTexto());
 					index++;
 				}
-
+				
+				//Excepcion: Valida que insertes un numero correcto
 				short eleccion = Validaciones.obtenerOpcionValida("Tu decisión: ", (short) 1,
-						(short) escenaActual.getMenus().size());
-
+				(short) escenaActual.getMenus().size());
+				
+				//Registrar acción 
 				Respuestas menuElegido = escenaActual.getMenus().get(eleccion - 1);
 				String accionElegida = menuElegido.getTexto();
 				String siguienteClave = menuElegido.getClave();
-
+				
+				//Incrementar turno (para la puntuación)
 				partidaActual.registrarAcciones(accionElegida);
 				partidaActual.incrementarTurno();
-
+				
+				//Imprime cual ha sido la decisión
 				System.out.println("Has elegido: " + accionElegida);
-
+				
+				//Comienza el combate
 				if (siguienteClave.equals("combate")) {
 					boolean victoria = false;
 					Combatir combate = new Combatir();
-					victoria = combate.batalla(partidaActual.getPersonaje(), "Caronte", "Hombre", "Hostil");
+					victoria = combate.batalla(partidaActual.getPersonaje(), "Aurelia", "Mujer", "Hostil");
 
 					if (victoria) {
 						siguienteClave = "final_demo";
@@ -103,12 +112,18 @@ public class Juego {
 						siguienteClave = "final_perdido";
 					}
 				}
-
+				
+				//Cambia parametros, finaliza el juego e imprime por pantalla los resultados de la partida
 				if (siguienteClave.contains("null")) {
 					partidaActual.setResultado(EstadoJuego.PERDISTE);
 					juegoEnCurso = false;
 					System.out.println("\n¡Has perdido! FINAL MALO.");
-				} else {
+				} else if(siguienteClave.contains("final_demo")){
+					partidaActual.setResultado(EstadoJuego.GANASTE);
+					juegoEnCurso = false;
+					System.out.println("Has completado la Demo ¡Enhorabuena!");
+				}
+				else {
 					claveEscenaActual = siguienteClave;
 				}
 
@@ -116,7 +131,7 @@ public class Juego {
 				partidaActual.getPersonaje().mostrar();
 			}
 
-			// Final de partida
+			// Crea las puntuaciones
 			Puntuacion puntuacion = partidaActual.getPuntuacion();
 			System.out.println("\nPuntuación obtenida: " + puntuacion.getPuntos());
 
@@ -126,7 +141,8 @@ public class Juego {
 			System.out.println("Acciones realizadas: " + partidaActual.getAcciones().size());
 
 			instancia.getUsuarioActual().getPartidas().add(partidaActual);
-
+			
+			//Posibles errores
 		} catch (Exception e) {
 			System.out.println("Error inesperado durante la partida: " + e.getMessage());
 		}
