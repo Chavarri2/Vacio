@@ -8,7 +8,6 @@ Si al descargar descargar el archivo y importarlo al eclipse no funcion sigue lo
 
 **Es posible que aún asi esta configuración no funcione**
 
-Como eclipse es un programa que deja mucho que desear, para que el proyecto funcione correctamente debes:
 1. buscar la clase Utilidades
 2. Escribir manualmente en el metodo "leerArchivo" la ruta absoluta de tu archivo en el ordenador.
 
